@@ -1,1 +1,8 @@
-Record=TopLevelDocument|FileName=Camera.SchDoc
+Record=TopLevelDocument|FileName=TopLevel.SchDoc
+Record=SheetSymbol|SourceDocument=TopLevel.SchDoc|Designator=Camera|SchDesignator=Camera|FileName=Camera.SchDoc|SymbolType=Normal|RawFileName=Camera.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
+Record=SheetSymbol|SourceDocument=TopLevel.SchDoc|Designator=Memory|SchDesignator=Memory|FileName=Memory.SchDoc|SymbolType=Normal|RawFileName=Memory.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
+Record=SheetSymbol|SourceDocument=TopLevel.SchDoc|Designator=Microcontroller|SchDesignator=Microcontroller|FileName=MCU.SchDoc|SymbolType=Normal|RawFileName=MCU.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
+Record=SheetSymbol|SourceDocument=TopLevel.SchDoc|Designator=Microphone|SchDesignator=Microphone|FileName=Microphone.SchDoc|SymbolType=Normal|RawFileName=Microphone.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
+Record=SheetSymbol|SourceDocument=TopLevel.SchDoc|Designator=Motion Sensor|SchDesignator=Motion Sensor|FileName=MotionSensor.SchDoc|SymbolType=Normal|RawFileName=MotionSensor.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
+Record=SheetSymbol|SourceDocument=TopLevel.SchDoc|Designator=PMU|SchDesignator=PMU|FileName=PMU.SchDoc|SymbolType=Normal|RawFileName=PMU.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
+Record=SheetSymbol|SourceDocument=TopLevel.SchDoc|Designator=WiFi|SchDesignator=WiFi|FileName=WiFi.SchDoc|SymbolType=Normal|RawFileName=WiFi.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
