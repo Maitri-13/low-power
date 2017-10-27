@@ -63,7 +63,7 @@ AnnotationIndexControlEnabled=0
 AnnotateSuffix=
 AnnotateScope=All
 AnnotateOrder=-1
-DoLibraryUpdate=1
+DoLibraryUpdate=0
 DoDatabaseUpdate=1
 ClassGenCCAutoEnabled=0
 ClassGenCCAutoRoomEnabled=1
@@ -148,7 +148,7 @@ AnnotationIndexControlEnabled=0
 AnnotateSuffix=
 AnnotateScope=All
 AnnotateOrder=1
-DoLibraryUpdate=0
+DoLibraryUpdate=1
 DoDatabaseUpdate=1
 ClassGenCCAutoEnabled=0
 ClassGenCCAutoRoomEnabled=1
@@ -191,122 +191,75 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=CAHTHWLR
 
-[Document10]
-DocumentPath=Project Outputs for LPEDT\CAMtastic1.Cam
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
-[Document11]
-DocumentPath=Project Outputs for LPEDT\CAMtastic2.Cam
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
-[Document12]
-DocumentPath=Project Outputs for LPEDT\CAMtastic3.Cam
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
 [GeneratedDocument1]
-DocumentPath=Project Outputs for LPEDT\3ER_PCB.DRR
+DocumentPath=Project Outputs for LPEDT\3ER_PCB-NonPlated.TXT
 DItemRevisionGUID=
 
 [GeneratedDocument2]
-DocumentPath=Project Outputs for LPEDT\3ER_PCB.EXTREP
+DocumentPath=Project Outputs for LPEDT\3ER_PCB-Plated.TXT
 DItemRevisionGUID=
 
 [GeneratedDocument3]
-DocumentPath=Project Outputs for LPEDT\3ER_PCB.GBL
+DocumentPath=Project Outputs for LPEDT\3ER_PCB.DRR
 DItemRevisionGUID=
 
 [GeneratedDocument4]
-DocumentPath=Project Outputs for LPEDT\3ER_PCB.GBO
+DocumentPath=Project Outputs for LPEDT\3ER_PCB.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument5]
-DocumentPath=Project Outputs for LPEDT\3ER_PCB.GBP
+DocumentPath=Project Outputs for LPEDT\3ER_PCB.GBL
 DItemRevisionGUID=
 
 [GeneratedDocument6]
-DocumentPath=Project Outputs for LPEDT\3ER_PCB.GBS
+DocumentPath=Project Outputs for LPEDT\3ER_PCB.GBO
 DItemRevisionGUID=
 
 [GeneratedDocument7]
-DocumentPath=Project Outputs for LPEDT\3ER_PCB.GD1
+DocumentPath=Project Outputs for LPEDT\3ER_PCB.GBP
 DItemRevisionGUID=
 
 [GeneratedDocument8]
-DocumentPath=Project Outputs for LPEDT\3ER_PCB.GG1
+DocumentPath=Project Outputs for LPEDT\3ER_PCB.GBS
 DItemRevisionGUID=
 
 [GeneratedDocument9]
-DocumentPath=Project Outputs for LPEDT\3ER_PCB.GTL
+DocumentPath=Project Outputs for LPEDT\3ER_PCB.GD1
 DItemRevisionGUID=
 
 [GeneratedDocument10]
-DocumentPath=Project Outputs for LPEDT\3ER_PCB.GTO
+DocumentPath=Project Outputs for LPEDT\3ER_PCB.GG1
 DItemRevisionGUID=
 
 [GeneratedDocument11]
-DocumentPath=Project Outputs for LPEDT\3ER_PCB.GTP
+DocumentPath=Project Outputs for LPEDT\3ER_PCB.GTL
 DItemRevisionGUID=
 
 [GeneratedDocument12]
-DocumentPath=Project Outputs for LPEDT\3ER_PCB.GTS
+DocumentPath=Project Outputs for LPEDT\3ER_PCB.GTO
 DItemRevisionGUID=
 
 [GeneratedDocument13]
-DocumentPath=Project Outputs for LPEDT\3ER_PCB.LDP
+DocumentPath=Project Outputs for LPEDT\3ER_PCB.GTP
 DItemRevisionGUID=
 
 [GeneratedDocument14]
-DocumentPath=Project Outputs for LPEDT\3ER_PCB.REP
+DocumentPath=Project Outputs for LPEDT\3ER_PCB.GTS
 DItemRevisionGUID=
 
 [GeneratedDocument15]
-DocumentPath=Project Outputs for LPEDT\3ER_PCB.RUL
+DocumentPath=Project Outputs for LPEDT\3ER_PCB.LDP
 DItemRevisionGUID=
 
 [GeneratedDocument16]
-DocumentPath=Project Outputs for LPEDT\3ER_PCB.TXT
+DocumentPath=Project Outputs for LPEDT\3ER_PCB.REP
 DItemRevisionGUID=
 
 [GeneratedDocument17]
+DocumentPath=Project Outputs for LPEDT\3ER_PCB.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument18]
 DocumentPath=Project Outputs for LPEDT\Design Rule Check - 3ER_PCB.html
 DItemRevisionGUID=
 
@@ -555,7 +508,7 @@ OutputDocumentPath1=
 OutputVariantName1=
 OutputDefault1=0
 Configuration1_Name1=OutputConfigurationParameter1
-Configuration1_Item1=BoardEdgeRoutToolDia=2000000|GenerateBoardEdgeRout=False|GenerateDrilledSlotsG85=False|GenerateEIADrillFile=False|GenerateSeparatePlatedNonPlatedFiles=False|NumberOfDecimals=5|NumberOfUnits=2|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Record=DrillView|Units=Imperial|ZeroesMode=SuppressTrailingZeroes
+Configuration1_Item1=BoardEdgeRoutToolDia=2000000|GenerateBoardEdgeRout=False|GenerateDrilledSlotsG85=False|GenerateEIADrillFile=False|GenerateSeparatePlatedNonPlatedFiles=True|NumberOfDecimals=5|NumberOfUnits=2|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Record=DrillView|Units=Imperial|ZeroesMode=SuppressTrailingZeroes
 OutputType2=Mask
 OutputName2=Solder/Paste Mask Prints
 OutputDocumentPath2=
@@ -618,7 +571,7 @@ OutputDocumentPath12=
 OutputVariantName12=[No Variations]
 OutputDefault12=0
 Configuration12_Name1=OutputConfigurationParameter1
-Configuration12_Item1=AddToAllLayerClasses.Set= |AddToAllPlots.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean,16908296~1|CentrePlots=False|DrillDrawingSymbol=GraphicsSymbol|DrillDrawingSymbolSize=200000|EmbeddedApertures=True|FilmBorderSize=10000000|FilmXSize=200000000|FilmYSize=160000000|FlashAllFills=False|FlashPadShapes=True|G54OnApertureChange=False|GenerateDRCRulesFile=True|GenerateDRCRulesFile=True|GenerateReliefShapes=True|GerberUnit=Imperial|GerberUnit=Imperial|IncludeUnconnectedMidLayerPads=False|LayerClassesMirror.Set= |LayerClassesPlot.Set= |LeadingAndTrailingZeroesMode=SuppressLeadingZeroes|MaxApertureSize=2500000|MinusApertureTolerance=50|MinusApertureTolerance=50|Mirror.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean|MirrorDrillDrawingPlots=False|MirrorDrillGuidePlots=False|NoRegularPolygons=False|NumberOfDecimals=5|NumberOfDecimals=5|OptimizeChangeLocationCommands=True|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Panelize=False|Plot.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean,16973830~1,16973832~1,16973834~1,16777217~1,16842751~1,16973835~1,16973833~1,16973831~1|PlotPositivePlaneLayers=False|PlotUsedDrillDrawingLayerPairs=True|PlotUsedDrillGuideLayerPairs=True|PlusApertureTolerance=50|PlusApertureTolerance=50|Record=GerberView|SoftwareArcs=False|Sorted=False|Sorted=False
+Configuration12_Item1=AddToAllLayerClasses.Set= |AddToAllPlots.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean,16908296~1|CentrePlots=False|DrillDrawingSymbol=GraphicsSymbol|DrillDrawingSymbolSize=200000|EmbeddedApertures=True|FilmBorderSize=10000000|FilmXSize=200000000|FilmYSize=160000000|FlashAllFills=False|FlashPadShapes=True|G54OnApertureChange=False|GenerateDRCRulesFile=True|GenerateDRCRulesFile=True|GenerateReliefShapes=True|GerberUnit=Imperial|GerberUnit=Imperial|IncludeUnconnectedMidLayerPads=False|LayerClassesMirror.Set= |LayerClassesPlot.Set= |LeadingAndTrailingZeroesMode=SuppressLeadingZeroes|MaxApertureSize=2500000|MinusApertureTolerance=50|MinusApertureTolerance=50|Mirror.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean|MirrorDrillDrawingPlots=False|MirrorDrillGuidePlots=False|NoRegularPolygons=False|NumberOfDecimals=5|NumberOfDecimals=5|OptimizeChangeLocationCommands=True|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Panelize=False|Plot.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean,16973830~1,16973832~1,16973834~1,16777217~1,16842751~1,16973835~1,16973833~1,16973831~1|PlotDrillDrawingLayerPair0_BackDrill=False|PlotDrillDrawingLayerPair0_HighLayer=Top Layer|PlotDrillDrawingLayerPair0_LowLayer=Bottom Layer|PlotDrillGuideLayerPair0_BackDrill=False|PlotDrillGuideLayerPair0_HighLayer=Top Layer|PlotDrillGuideLayerPair0_LowLayer=Bottom Layer|PlotPositivePlaneLayers=False|PlotUsedDrillDrawingLayerPairs=False|PlotUsedDrillGuideLayerPairs=False|PlusApertureTolerance=50|PlusApertureTolerance=50|Record=GerberView|SoftwareArcs=False|Sorted=False|Sorted=False
 
 [OutputGroup6]
 Name=Report Outputs
@@ -1249,7 +1202,7 @@ ComponentLibIdentifierKind1=Library Name And Type
 ComponentLibraryIdentifier1=LowPower_3ER_Parts.IntLib
 ComponentDesignItemID1=B2B-PH-SM4-TB
 ComponentSymbolReference1=B2B-PH-SM4-TB
-ComponentUpdate1=1
+ComponentUpdate1=0
 ComponentIsDeviceSheet1=0
 ComponentLibIdentifierKind2=Library Name And Type
 ComponentLibraryIdentifier2=LowPower_3ER_Parts.IntLib
@@ -1259,136 +1212,142 @@ ComponentUpdate2=1
 ComponentIsDeviceSheet2=0
 ComponentLibIdentifierKind3=Library Name And Type
 ComponentLibraryIdentifier3=LowPower_3ER_Parts.IntLib
-ComponentDesignItemID3=LT1300CS8PBF
-ComponentSymbolReference3=LT1300CS8PBF
+ComponentDesignItemID3=LM2937IMPX-5.0/NOPB
+ComponentSymbolReference3=LM2937IMPX-5.0/NOPB
 ComponentUpdate3=1
 ComponentIsDeviceSheet3=0
 ComponentLibIdentifierKind4=Library Name And Type
 ComponentLibraryIdentifier4=LowPower_3ER_Parts.IntLib
-ComponentDesignItemID4=LTC3106
-ComponentSymbolReference4=LTC3106
-ComponentUpdate4=1
+ComponentDesignItemID4=LT1300CS8PBF
+ComponentSymbolReference4=LT1300CS8PBF
+ComponentUpdate4=0
 ComponentIsDeviceSheet4=0
 ComponentLibIdentifierKind5=Library Name And Type
 ComponentLibraryIdentifier5=LowPower_3ER_Parts.IntLib
-ComponentDesignItemID5=MAX9814ETD+T
-ComponentSymbolReference5=MAX9814ETD+T
-ComponentUpdate5=1
+ComponentDesignItemID5=LTC3106
+ComponentSymbolReference5=LTC3106
+ComponentUpdate5=0
 ComponentIsDeviceSheet5=0
 ComponentLibIdentifierKind6=Library Name And Type
 ComponentLibraryIdentifier6=LowPower_3ER_Parts.IntLib
-ComponentDesignItemID6=SST25VF010A
-ComponentSymbolReference6=SST25VF010A
+ComponentDesignItemID6=MAX9814ETD+T
+ComponentSymbolReference6=MAX9814ETD+T
 ComponentUpdate6=1
 ComponentIsDeviceSheet6=0
 ComponentLibIdentifierKind7=Library Name And Type
 ComponentLibraryIdentifier7=LowPower_3ER_Parts.IntLib
-ComponentDesignItemID7=TLMO1100-GS08
-ComponentSymbolReference7=TLMO1100-GS08
+ComponentDesignItemID7=SST25VF010A
+ComponentSymbolReference7=SST25VF010A
 ComponentUpdate7=1
 ComponentIsDeviceSheet7=0
 ComponentLibIdentifierKind8=Library Name And Type
 ComponentLibraryIdentifier8=LowPower_3ER_Parts.IntLib
-ComponentDesignItemID8=uCamIII
-ComponentSymbolReference8=uCamIII
+ComponentDesignItemID8=TLMO1100-GS08
+ComponentSymbolReference8=TLMO1100-GS08
 ComponentUpdate8=1
 ComponentIsDeviceSheet8=0
 ComponentLibIdentifierKind9=Library Name And Type
 ComponentLibraryIdentifier9=LowPower_3ER_Parts.IntLib
-ComponentDesignItemID9=uCamIII_HEADER
-ComponentSymbolReference9=uCamIII_HEADER
+ComponentDesignItemID9=uCamIII
+ComponentSymbolReference9=uCamIII
 ComponentUpdate9=1
 ComponentIsDeviceSheet9=0
 ComponentLibIdentifierKind10=Library Name And Type
 ComponentLibraryIdentifier10=LowPower_3ER_Parts.IntLib
-ComponentDesignItemID10=WGM110_DEV
-ComponentSymbolReference10=WGM110_DEV
+ComponentDesignItemID10=uCamIII_HEADER
+ComponentSymbolReference10=uCamIII_HEADER
 ComponentUpdate10=1
 ComponentIsDeviceSheet10=0
 ComponentLibIdentifierKind11=Library Name And Type
-ComponentLibraryIdentifier11=microphone.SchLib
-ComponentDesignItemID11=Component_1
-ComponentSymbolReference11=Component_1
-ComponentUpdate11=0
+ComponentLibraryIdentifier11=LowPower_3ER_Parts.IntLib
+ComponentDesignItemID11=WGM110_DEV
+ComponentSymbolReference11=WGM110_DEV
+ComponentUpdate11=1
 ComponentIsDeviceSheet11=0
 ComponentLibIdentifierKind12=Library Name And Type
-ComponentLibraryIdentifier12=Miscellaneous Connectors.IntLib
-ComponentDesignItemID12=Header 2
-ComponentSymbolReference12=Header 2
-ComponentUpdate12=1
+ComponentLibraryIdentifier12=microphone.SchLib
+ComponentDesignItemID12=Component_1
+ComponentSymbolReference12=Component_1
+ComponentUpdate12=0
 ComponentIsDeviceSheet12=0
 ComponentLibIdentifierKind13=Library Name And Type
 ComponentLibraryIdentifier13=Miscellaneous Connectors.IntLib
-ComponentDesignItemID13=Header 3
-ComponentSymbolReference13=Header 3
+ComponentDesignItemID13=Header 2
+ComponentSymbolReference13=Header 2
 ComponentUpdate13=1
 ComponentIsDeviceSheet13=0
 ComponentLibIdentifierKind14=Library Name And Type
 ComponentLibraryIdentifier14=Miscellaneous Connectors.IntLib
-ComponentDesignItemID14=Header 5
-ComponentSymbolReference14=Header 5
-ComponentUpdate14=0
+ComponentDesignItemID14=Header 3
+ComponentSymbolReference14=Header 3
+ComponentUpdate14=1
 ComponentIsDeviceSheet14=0
 ComponentLibIdentifierKind15=Library Name And Type
 ComponentLibraryIdentifier15=Miscellaneous Connectors.IntLib
-ComponentDesignItemID15=Header 6
-ComponentSymbolReference15=Header 6
-ComponentUpdate15=1
+ComponentDesignItemID15=Header 5
+ComponentSymbolReference15=Header 5
+ComponentUpdate15=0
 ComponentIsDeviceSheet15=0
 ComponentLibIdentifierKind16=Library Name And Type
 ComponentLibraryIdentifier16=Miscellaneous Connectors.IntLib
-ComponentDesignItemID16=Header 7
-ComponentSymbolReference16=Header 7
+ComponentDesignItemID16=Header 6
+ComponentSymbolReference16=Header 6
 ComponentUpdate16=1
 ComponentIsDeviceSheet16=0
 ComponentLibIdentifierKind17=Library Name And Type
-ComponentLibraryIdentifier17=Miscellaneous Devices.IntLib
-ComponentDesignItemID17=Cap Semi
-ComponentSymbolReference17=Cap Semi
-ComponentUpdate17=0
+ComponentLibraryIdentifier17=Miscellaneous Connectors.IntLib
+ComponentDesignItemID17=Header 7
+ComponentSymbolReference17=Header 7
+ComponentUpdate17=1
 ComponentIsDeviceSheet17=0
 ComponentLibIdentifierKind18=Library Name And Type
 ComponentLibraryIdentifier18=Miscellaneous Devices.IntLib
-ComponentDesignItemID18=Diode 10TQ040
-ComponentSymbolReference18=Diode 10TQ040
+ComponentDesignItemID18=Cap Semi
+ComponentSymbolReference18=Cap Semi
 ComponentUpdate18=0
 ComponentIsDeviceSheet18=0
 ComponentLibIdentifierKind19=Library Name And Type
 ComponentLibraryIdentifier19=Miscellaneous Devices.IntLib
-ComponentDesignItemID19=Inductor
-ComponentSymbolReference19=Inductor
+ComponentDesignItemID19=Diode 10TQ040
+ComponentSymbolReference19=Diode 10TQ040
 ComponentUpdate19=0
 ComponentIsDeviceSheet19=0
 ComponentLibIdentifierKind20=Library Name And Type
 ComponentLibraryIdentifier20=Miscellaneous Devices.IntLib
-ComponentDesignItemID20=Res3
-ComponentSymbolReference20=Res3
+ComponentDesignItemID20=Inductor
+ComponentSymbolReference20=Inductor
 ComponentUpdate20=0
 ComponentIsDeviceSheet20=0
 ComponentLibIdentifierKind21=Library Name And Type
 ComponentLibraryIdentifier21=Miscellaneous Devices.IntLib
-ComponentDesignItemID21=SW-PB
-ComponentSymbolReference21=SW-PB
+ComponentDesignItemID21=Res3
+ComponentSymbolReference21=Res3
 ComponentUpdate21=0
 ComponentIsDeviceSheet21=0
 ComponentLibIdentifierKind22=Library Name And Type
 ComponentLibraryIdentifier22=Miscellaneous Devices.IntLib
-ComponentDesignItemID22=XTAL
-ComponentSymbolReference22=XTAL
+ComponentDesignItemID22=SW-PB
+ComponentSymbolReference22=SW-PB
 ComponentUpdate22=0
 ComponentIsDeviceSheet22=0
 ComponentLibIdentifierKind23=Library Name And Type
-ComponentLibraryIdentifier23=SparkFun-Connectors.IntLib
-ComponentDesignItemID23=TEST-POINT2
-ComponentSymbolReference23=TEST-POINT2
-ComponentUpdate23=1
+ComponentLibraryIdentifier23=Miscellaneous Devices.IntLib
+ComponentDesignItemID23=XTAL
+ComponentSymbolReference23=XTAL
+ComponentUpdate23=0
 ComponentIsDeviceSheet23=0
 ComponentLibIdentifierKind24=Library Name And Type
-ComponentLibraryIdentifier24=SparkFun-Connectors.SCHLIB
-ComponentDesignItemID24=POWER_JACKSMD
-ComponentSymbolReference24=POWER_JACKSMD
+ComponentLibraryIdentifier24=SparkFun-Connectors.IntLib
+ComponentDesignItemID24=TEST-POINT2
+ComponentSymbolReference24=TEST-POINT2
 ComponentUpdate24=1
 ComponentIsDeviceSheet24=0
+ComponentLibIdentifierKind25=Library Name And Type
+ComponentLibraryIdentifier25=SparkFun-Connectors.SCHLIB
+ComponentDesignItemID25=POWER_JACKSMD
+ComponentSymbolReference25=POWER_JACKSMD
+ComponentUpdate25=0
+ComponentIsDeviceSheet25=0
 FullReplace=1
 UpdateDesignatorLock=1
 UpdatePartIDLock=1
@@ -1555,54 +1514,57 @@ ModelType31=PCBLIB
 ModelName31=SOIC-8_S
 ModelUpdate31=1
 ModelType32=PCBLIB
-ModelName32=SPST-2
+ModelName32=SOT230P700X180-4N
 ModelUpdate32=1
 ModelType33=PCBLIB
-ModelName33=SST25VF010A
+ModelName33=SPST-2
 ModelUpdate33=1
 ModelType34=PCBLIB
-ModelName34=TO-220AC
+ModelName34=SST25VF010A
 ModelUpdate34=1
 ModelType35=PCBLIB
-ModelName35=uCamIII
+ModelName35=TO-220AC
 ModelUpdate35=1
 ModelType36=PCBLIB
-ModelName36=uCamIII_Header
+ModelName36=uCamIII
 ModelUpdate36=1
 ModelType37=PCBLIB
-ModelName37=WGM110_PAC
+ModelName37=uCamIII_Header
 ModelUpdate37=1
+ModelType38=PCBLIB
+ModelName38=WGM110_PAC
+ModelUpdate38=1
 ModelTypeGroup1=SI
 ModelTypeUpdate1=1
-ModelType38=SI
-ModelName38=Cap Semi
-ModelUpdate38=1
 ModelType39=SI
-ModelName39=Connector
+ModelName39=Cap Semi
 ModelUpdate39=1
 ModelType40=SI
-ModelName40=Inductor
+ModelName40=Connector
 ModelUpdate40=1
 ModelType41=SI
-ModelName41=Res
+ModelName41=Inductor
 ModelUpdate41=1
+ModelType42=SI
+ModelName42=Res
+ModelUpdate42=1
 ModelTypeGroup2=SIM
 ModelTypeUpdate2=1
-ModelType42=SIM
-ModelName42=10TQ040
-ModelUpdate42=1
 ModelType43=SIM
-ModelName43=CAP
+ModelName43=10TQ040
 ModelUpdate43=1
 ModelType44=SIM
-ModelName44=INDUCTOR
+ModelName44=CAP
 ModelUpdate44=1
 ModelType45=SIM
-ModelName45=RESISTOR
+ModelName45=INDUCTOR
 ModelUpdate45=1
 ModelType46=SIM
-ModelName46=XTAL
+ModelName46=RESISTOR
 ModelUpdate46=1
+ModelType47=SIM
+ModelName47=XTAL
+ModelUpdate47=1
 
 [DatabaseUpdateOptions]
 SelectedOnly=0
