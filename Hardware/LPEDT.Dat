@@ -1,0 +1,47 @@
+﻿Field=#~Integer~#~50|Field=Comment~String~Comment~125|Field=Description~String~Description~283|Field=Designator~String~Designator~99|Field=Footprint~String~Footprint~99|Field=LibRef~String~LibRef~99|Field=Quantity~Integer~Quantity~98|Field=Supplier Part Number 1~String~Supplier Part Number 1~100|ReportField=Currency~<none>|ReportField=ProductionQuantity~1|ReportField=ProjectFileName~LPEDT.PrjPcb|ReportField=ProjectFullPath~C:\Users\akshi\Desktop\LPEDT\low-power\Hardware\LPEDT.PrjPcb|ReportField=Title~Bill of Materials For Project [LPEDT.PrjPcb] (No PCB Document Selected)|ReportField=TotalQuantity~87|ReportField=ReportTime~7:31:26 PM|ReportField=ReportDate~11/6/2017|ReportField=ReportDateTime~11/6/2017 7:31:26 PM|ReportField=OutputName~Bill of Materials|ReportField=OutputType~BOM_PartType|ReportField=GeneratorName~BOM|ReportField=GeneratorDescription~Bill of Materials|ReportField=VariantName~None|ReportField=Address1~|ReportField=Address2~|ReportField=Address3~|ReportField=Address4~|ReportField=Application_BuildNumber~1.0|ReportField=ApprovedBy~|ReportField=Author~Chase E Stewart|ReportField=CheckedBy~|ReportField=CompanyName~Three-Eyed Ravens|ReportField=CurrentDate~11/6/2017|ReportField=CurrentTime~7:30:43 PM|ReportField=Date~10/18/2017|ReportField=DocumentFullPathAndName~C:\Users\akshi\Desktop\LPEDT\low-power\Hardware\TopLevel.SchDoc|ReportField=DocumentName~TopLevel.SchDoc|ReportField=DocumentNumber~001|ReportField=DrawnBy~Chase E Stewart|ReportField=Engineer~|ReportField=ImagePath~|ReportField=ModifiedDate~10/30/2017|ReportField=Organization~CU Boulder|ReportField=ProjectName~LPEDT.PrjPcb|ReportField=Revision~1.1|ReportField=Rule~|ReportField=SheetNumber~1|ReportField=SheetTotal~8|ReportField=Time~|ReportField=Title~Top-Level Schematic|ReportField=DataSourceFileName~LPEDT.PrjPcb|ReportField=DataSourceFullPath~C:\Users\akshi\Desktop\LPEDT\low-power\Hardware\LPEDT.PrjPcb|ReportField=PCBConfigurationName~Sources|ReportField=Item~|ReportField=ItemRevision~|ReportField=ItemAndRevision~|ReportField=ItemRevisionBase~|ReportField=ItemRevisionLevel1~|ReportField=ItemRevisionLevel2~|ReportField=ItemRevisionLevel1AndBase~|ReportField=ItemRevisionLevel2AndLevel1~
+1|SparkFun Test Points||15, TP19, TP20, TP21, TP23|PAD.02X.02|TEST-POINT2|5|{URL}{URL.TEXT}36-5019CT-ND,%2036-5019DKR-ND,%2036-5019CT-ND,%2036-5019CT-ND,%2036-5019DKR-ND{URL.TIP}Supplier
+2|10uF|Capacitor (Semiconductor SIM Model)|C1, C4, C12|1608[0603]|Cap Semi|3|{URL}{URL.TEXT}1276-1948-1-ND,%201276-1948-6-ND,%201276-1948-6-ND{URL.TIP}Supplier
+3|10nF|Capacitor (Semiconductor SIM Model)|C2, C3|1608[0603]|Cap Semi|2|{URL}{URL.TEXT}311-1085-1-ND,%20311-1085-6-ND{URL.TIP}Supplier
+4|0.1uF|Capacitor (Semiconductor SIM Model)|C5, C10, C15, C19, C20, C25|1608[0603]|Cap Semi|6|{URL}{URL.TEXT}311-1088-6-ND,%20311-1088-6-ND,%20311-1088-1-ND,%20311-1088-1-ND,%20311-1088-6-ND,%20311-1088-6-ND{URL.TIP}Supplier
+5|47uF|Capacitor (Semiconductor SIM Model)|C6|1608[0603]|Cap Semi|1|{URL}{URL.TEXT}478-11180-2-ND{URL.TIP}Supplier
+6|100uF|146 CTI Series 50 V 100 uF 10 x 10 x 10 mm SMT CAN Electrolytic Capacitor|C7, C9, C22, C24, C26|CAPAE1050X1050N|MAL214699103E3|5|{URL}{URL.TEXT}4437PHCT-ND{URL.TIP}Supplier
+7|1uF|Capacitor (Semiconductor SIM Model)|C8, C11, C16, C21|1608[0603]|Cap Semi|4|{URL}{URL.TEXT}1276-1946-6-ND,%201276-1946-6-ND,%201276-1946-1-ND,%201276-1946-6-ND{URL.TIP}Supplier
+8|100nF|Capacitor (Semiconductor SIM Model)|C13|1608[0603]|Cap Semi|1|{URL}{URL.TEXT}311-1088-1-ND{URL.TIP}Supplier
+9|100pF|Capacitor (Semiconductor SIM Model)|C14|1608[0603]|Cap Semi|1|{URL}{URL.TEXT}399-7824-1-ND{URL.TIP}Supplier
+10|0.47uF|Capacitor (Semiconductor SIM Model)|C17|1608[0603]|Cap Semi|1|{URL}{URL.TEXT}490-3295-1-ND{URL.TIP}Supplier
+11|2.2uF|Capacitor (Semiconductor SIM Model)|C18, C23|1608[0603]|Cap Semi|2|{URL}{URL.TEXT}587-2983-6-ND{URL.TIP}Supplier
+12|MBRS140|MBRS140|D1|DO-214AC|MBRS140|1|{URL}{URL.TEXT}MBRS140T3GOSDKR-ND{URL.TIP}Supplier
+13|LED|Orange 0603 160Â° 80 mcd 2.1 V 30 mA Non Diffused Surface Mount LED|D3|0603_TLMO1100-GS08(Primary)|TLMO1100-GS08|1|{URL}{URL.TEXT}751-1174-6-ND{URL.TIP}Supplier
+14|Power Jack||J1|POWER_JACK_SMD|POWER_JACKSMD|1|{URL}{URL.TEXT}{URL.TIP}Supplier
+15|10uH|Inductor|L1, L2|INDM7366X500|Inductor|2|{URL}{URL.TEXT}732-1025-1-ND{URL.TIP}Supplier
+16|Battery Connector||P0|JST_B2B-PH-SM4-TB|B2B-PH-SM4-TB|1|{URL}{URL.TEXT}{URL.TIP}Supplier
+17|Header, 6 Pin|Header, 6-Pin|P1|HDR1X6|Header 6|1|{URL}{URL.TEXT}732-5327-ND{URL.TIP}Supplier
+18|Header, 3-Pin|Header, 3-Pin|P2, P3|HDR1X3|Header 3|2|{URL}{URL.TEXT}{URL.TIP}Supplier
+19|Header, 6-Pin|Header, 6-Pin|P5|HDR1X6|Header 6|1|{URL}{URL.TEXT}{URL.TIP}Supplier
+20|Header, 5-Pin|Header, 5-Pin|P6|HDR1X5|Header 5|1|{URL}{URL.TEXT}{URL.TIP}Supplier
+21|Value|Header, 7-Pin|P7|HDR1X7|Header 7|1|{URL}{URL.TEXT}732-5327-ND{URL.TIP}Supplier
+22|Header, 2-Pin|Header, 2-Pin|P8, P9, P10, P11, P12|HDR1X2|Header 2|5|{URL}{URL.TEXT}732-5327-ND{URL.TIP}Supplier
+23|1K|Resistor|R0, R2|J1-0603|Res3|2|{URL}{URL.TEXT}311-0.0GRDKR-ND,%20311-1.0KGRCT-ND{URL.TIP}Supplier
+24|0|Resistor|R1, R6, R7, R9, R10|J1-0603|Res3|5|{URL}{URL.TEXT}311-0.0GRDKR-ND,%20732-4484-6-ND,%20732-4484-6-ND,%20311-0.0GRDKR-ND,%20311-0.0GRDKR-ND{URL.TIP}Supplier
+25|2.2K|Resistor|R3|J1-0603|Res3|1|{URL}{URL.TEXT}{URL.TIP}Supplier
+26|150K|Resistor|R4|J1-0603|Res3|1|{URL}{URL.TEXT}311-1088-1-ND{URL.TIP}Supplier
+27|100K|Resistor|R5|J1-0603|Res3|1|{URL}{URL.TEXT}311-100KHRCT-ND{URL.TIP}Supplier
+28|Ferrite Bead|Resistor|R8|J1-0603|Res3|1|{URL}{URL.TEXT}732-4484-1-ND{URL.TIP}Supplier
+29|1M|Resistor|R11|J1-0603|Res3|1|{URL}{URL.TEXT}311-1.00MHRDKR-ND{URL.TIP}Supplier
+30|1|Resistor|R12|J1-0603|Res3|1|{URL}{URL.TEXT}311-1.00HRDKR-ND{URL.TIP}Supplier
+31|Button|TL3315 Series SPST 1 N Round Button J-Bend SMT Low Profile Tactile Switch|S1|TL3315NF100Q|TL3315NF100Q|1|{URL}{URL.TEXT}{URL.TIP}Supplier
+32|SOD2513X120N||SchottkyDiode|SOD2513X120N|SOD2513X120N|1|{URL}{URL.TEXT}ZLLS400TADKR-ND{URL.TIP}Supplier
+33|Test Points|Phosphor Bronze Contact Miniature Silver Plated Surface Mount Test Points|TP1, TP2, TP3, TP4, TP5, TP6, TP7, TP8, TP9, TP10, TP11|TP380X203|5019|11|{URL}{URL.TEXT}36-5019DKR-ND,%2036-5019DKR-ND,%2036-5019CT-ND,%2036-5019CT-ND,%2036-5019CT-ND,%2036-5019DKR-ND,%2036-5019DKR-ND,%2036-5019DKR-ND,%2036-5019CT-ND,%2036-5019DKR-ND,%2036-5019CT-ND{URL.TIP}Supplier
+34|uCamIII_HEADER|just a pin header for components|U1|uCamIII_Header|uCamIII_HEADER|1|{URL}{URL.TEXT}1613-1369-ND{URL.TIP}Supplier
+35|Pearl Gecko|MCU 32-bit ARM Cortex M4 RISC 1024KB Flash 3.3V 48-Pin QFN EP|U2|QFN50P700X700X90-49N|EFM32PG12B500F1024GM48-B|1|{URL}{URL.TEXT}336-3941-ND{URL.TIP}Supplier
+36|Memory||U3|SST25VF010A|SST25VF010A|1|{URL}{URL.TEXT}SST25VF010A-33-4C-SAE-ND{URL.TIP}Supplier
+37|Mic Amp|Audio Amp Microphone 1-CH Mono Class-AB 14-Pin TDFN EP T/R|U4|DFN300X300X80-15N|MAX9814ETD+T|1|{URL}{URL.TEXT}MAX9814ETD%2BTDKR-ND{URL.TIP}Supplier
+38|Mic||U5|CMA-4544PF-W|Component_1|1|{URL}{URL.TEXT}102-1721-ND{URL.TIP}Supplier
+39|Motion Sensor||U6|AMN24112|AMN24112|1|{URL}{URL.TEXT}255-1818-ND{URL.TIP}Supplier
+40|LTC3106||U7|LTC3106|LTC3106|1|{URL}{URL.TEXT}LTC3106EUDC%23PBF-ND{URL.TIP}Supplier
+41|LT1300CS8PBF|PMIC - DC/DC voltage regulator Linear Technology LT1300CS8%23PBF Boost%2C Converter/amplifier SOIC 8|U8|SOIC-8_S|LT1300CS8PBF|1|{URL}{URL.TEXT}{URL.TIP}Supplier
+42|Wifi Module||U9|WGM110_PAC|WGM110_DEV|1|{URL}{URL.TEXT}336-4136-1-ND{URL.TIP}Supplier
+43|LDO|LDO Regulator Pos 5V 0.5A Automotive 4-Pin(3+Tab) SOT-223 T/R|U10|SOT230P700X180-4N|LM2937IMPX-5.0/NOPB|1|{URL}{URL.TEXT}LT1300CS8%23PBF-ND{URL.TIP}Supplier
+44|uCamIII||uCamIII|uCamIII|uCamIII|1|{URL}{URL.TEXT}{URL.TIP}Supplier
+45|HF Oscillator|Oscillator MEMS 40MHz ?25ppm (Stability) 15pF 55% 1.8V/2.5V/3.3V Automotive 4-Pin QFN SMD T/R|Y1|OSCSC320X250X100N|ASFLMB-40.000MHZ-LR-T|1|{URL}{URL.TEXT}535-11000-1-ND{URL.TIP}Supplier
+46|LF Oscillator||Y2|XTAL320X150X90N|ECS-.327-12.5-34B-TR|1|{URL}{URL.TEXT}520-ECS-327-12.5-34B{URL.TIP}Supplier
