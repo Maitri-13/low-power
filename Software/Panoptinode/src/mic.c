@@ -7,23 +7,7 @@
  * <b>Copyright 2015 Silicon Labs, Inc. http://www.silabs.com</b>
  *******************************************************************************
  ******************************************************************************/
-
-#include "em_device.h"
-#include "em_adc.h"
-#include "em_chip.h"
-#include "em_cmu.h"
-#include "em_emu.h"
-#include "rtcdriver.h"
-#include "graphics.h"
-#include "bspconfig.h"
-#include <stddef.h>
-
-/***************************************************************************//**
- * Local defines
- ******************************************************************************/
-
-/** Time (in ms) between periodic updates of the measurements. */
-#define PERIODIC_UPDATE_MS      1000
+#include "../includes/main.h"
 
 /***************************************************************************//**
  * Local variables
@@ -34,21 +18,12 @@ static void * rtcCallbackArg = 0;
 volatile uint32_t rtcCallbacks = 0;
 
 /** This flag tracks if we need to update the display. */
-static volatile bool updateDisplay = true;
-
-/** Timer used for periodic update of the measurements. */
-RTCDRV_TimerID_t periodicUpdateTimerId;
-
-/***************************************************************************//**
- * Local prototypes
- ******************************************************************************/
-static void periodicUpdateCallback(RTCDRV_TimerID_t id, void *user);
-static void memLcdCallback(RTCDRV_TimerID_t id, void *user);
+extern volatile bool updateDisplay;
 
 /***************************************************************************//**
  * @brief Initialize ADC for MIC readings in single point
  ******************************************************************************/
-static void AdcSetup(void)
+void AdcSetup(void)
 {
   /* Enable ADC clock */
   CMU_ClockEnable(cmuClock_ADC0, true);
@@ -88,7 +63,7 @@ static uint32_t AdcRead(void)
  *
  * @return Volts.
  *******************************************************************************************/
-static double convertADCtoVolt()
+double convertADCtoVolt()
 {
 	uint32_t signalMax = 0;
 	uint32_t signalMin = 1024;
@@ -111,54 +86,13 @@ static double convertADCtoVolt()
 	 double volts = (peakToPeak * 5.0) / 1024;  // convert to volts
 	 return volts;
 }
-/***************************************************************************//**
- * @brief  Main function
- ******************************************************************************/
-int main(void)
-{
-  //EMU_DCDCInit_TypeDef dcdcInit = EMU_DCDCINIT_STK_DEFAULT;
-  CMU_HFXOInit_TypeDef hfxoInit = CMU_HFXOINIT_STK_DEFAULT;
-  float getAdcVolt;
-
-  /* Chip errata */
-  CHIP_Init();
-
-  /* Init HFXO with WSTK radio board specific parameters */
-  CMU_HFXOInit(&hfxoInit);
-
-  /* Switch HFCLK to HFXO and disable HFRCO */
-  CMU_ClockSelectSet(cmuClock_HF, cmuSelect_HFXO);
-  CMU_OscillatorEnable(cmuOsc_HFRCO, false, false);
-
-  /* Setup ADC */
-  AdcSetup();
-
-  RTCDRV_Init();
-  GRAPHICS_Init();
-
-  /* Set up periodic update of the display. */
-  RTCDRV_AllocateTimer(&periodicUpdateTimerId);
-  RTCDRV_StartTimer(periodicUpdateTimerId, rtcdrvTimerTypePeriodic,
-                    PERIODIC_UPDATE_MS, periodicUpdateCallback, NULL);
-
-  updateDisplay = true;
-
-  while (true) {
-    if (updateDisplay) {
-      updateDisplay = false;
-      getAdcVolt = convertADCtoVolt();
-      GRAPHICS_ShowTemp(getAdcVolt);
-    }
-    EMU_EnterEM2(false);
-  }
-}
 
 /***************************************************************************//**
  * @brief   The actual callback for Memory LCD toggling
  * @param[in] id
  *   The id of the RTC timer (not used)
  ******************************************************************************/
-static void memLcdCallback(RTCDRV_TimerID_t id, void *user)
+void memLcdCallback(RTCDRV_TimerID_t id, void *user)
 {
   (void) id;
   (void) user;
@@ -197,7 +131,7 @@ int rtcIntCallbackRegister(void (*pFunction)(void*),
 /***************************************************************************//**
  * @brief Callback used to count between measurement updates
  ******************************************************************************/
-static void periodicUpdateCallback(RTCDRV_TimerID_t id, void *user)
+void periodicUpdateCallback(RTCDRV_TimerID_t id, void *user)
 {
   (void) id;
   (void) user;

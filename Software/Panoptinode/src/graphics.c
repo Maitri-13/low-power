@@ -65,18 +65,15 @@ void GRAPHICS_Init(void)
  * @param temp
  *        The temperature in celsius
  ******************************************************************************/
-void GRAPHICS_ShowTemp(float temp)
+void GRAPHICS_DisplayData(float val)
 {
   char buffer[100];
-  snprintf(buffer, sizeof(buffer), "%f V", temp);
+  snprintf(buffer, sizeof(buffer), "%f V", val);
   GLIB_clear(&glibContext);
   GLIB_drawString(&glibContext, "ADC val: ", 32, 5, 5, 0);
   GLIB_drawString(&glibContext, buffer, 32, 5, 15, 0);
-  if (temp == -100.0) {
-    GLIB_drawString(&glibContext, "It is either very", 32, 5, 35, 0);
-    GLIB_drawString(&glibContext, "cold today, or the", 32, 5, 45, 0);
-    GLIB_drawString(&glibContext, "ADC temp. sensor", 32, 5, 55, 0);
-    GLIB_drawString(&glibContext, "is not calibrated.", 32, 5, 65, 0);
+  if (val == -100.0) {
+    GLIB_drawString(&glibContext, "ADC is not calibrated.", 32, 5, 65, 0);
   }
   DMD_updateDisplay();
 }
