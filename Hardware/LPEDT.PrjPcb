@@ -190,10 +190,13 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=CAHTHWLR
 
+<<<<<<< HEAD
+=======
 [GeneratedDocument1]
 DocumentPath=New_BOM
 DItemRevisionGUID=
 
+>>>>>>> 8daa45d4e808d0f516ca48413f5db2853e6956d0
 [Configuration1]
 Name=Sources
 ParameterCount=0
@@ -246,7 +249,11 @@ OutputDir=
 [OutputGroup1]
 Name=Netlist Outputs
 Description=
+<<<<<<< HEAD
+TargetPrinter=Send To OneNote 2016
+=======
 TargetPrinter=Microsoft Print to PDF
+>>>>>>> 8daa45d4e808d0f516ca48413f5db2853e6956d0
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
 OutputType1=CadnetixNetlist
 OutputName1=Cadnetix Netlist
@@ -367,7 +374,11 @@ OutputDefault23=0
 [OutputGroup2]
 Name=Simulator Outputs
 Description=
+<<<<<<< HEAD
+TargetPrinter=Send To OneNote 2016
+=======
 TargetPrinter=Microsoft Print to PDF
+>>>>>>> 8daa45d4e808d0f516ca48413f5db2853e6956d0
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
 OutputType1=AdvSimNetlist
 OutputName1=Mixed Sim
@@ -506,7 +517,11 @@ PageOptions20=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|Print
 [OutputGroup4]
 Name=Assembly Outputs
 Description=
+<<<<<<< HEAD
+TargetPrinter=Send To OneNote 2016
+=======
 TargetPrinter=Microsoft Print to PDF
+>>>>>>> 8daa45d4e808d0f516ca48413f5db2853e6956d0
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
 OutputType1=Assembly
 OutputName1=Assembly Drawings
@@ -528,7 +543,11 @@ OutputDefault3=0
 [OutputGroup5]
 Name=Fabrication Outputs
 Description=
+<<<<<<< HEAD
+TargetPrinter=Send To OneNote 2016
+=======
 TargetPrinter=Microsoft Print to PDF
+>>>>>>> 8daa45d4e808d0f516ca48413f5db2853e6956d0
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
 OutputType1=NC Drill
 OutputName1=NC Drill Files
@@ -604,7 +623,11 @@ Configuration12_Item1=AddToAllLayerClasses.Set= |AddToAllPlots.Set=SerializeLaye
 [OutputGroup6]
 Name=Report Outputs
 Description=
+<<<<<<< HEAD
+TargetPrinter=Send To OneNote 2016
+=======
 TargetPrinter=Microsoft Print to PDF
+>>>>>>> 8daa45d4e808d0f516ca48413f5db2853e6956d0
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
 OutputType1=BOM_PartType
 OutputName1=Bill of Materials
@@ -617,13 +640,21 @@ Configuration1_Item1=CaptionAsName
 Configuration1_Name2=Filter
 Configuration1_Item2=545046300E5446696C74657257726170706572000D46696C7465722E416374697665090F46696C7465722E43726974657269610A04000000000000000000
 Configuration1_Name3=General
+<<<<<<< HEAD
+Configuration1_Item3=OpenExported=False|AddToProject=False|ForceFit=False|NotFitted=False|Database=False|DatabasePriority=False|IncludePCBData=False|IncludeVaultData=False|IncludeAlternatives=False|ShowExportOptions=True|TemplateFilename=|BatchMode=5|FormWidth=1032|FormHeight=661|SupplierProdQty=1|SupplierAutoQty=False|SupplierUseCachedPricing=False|SupplierCurrency=<none>
+=======
 Configuration1_Item3=OpenExported=True|AddToProject=True|ForceFit=False|NotFitted=False|Database=False|DatabasePriority=False|IncludePCBData=False|IncludeVaultData=False|IncludeAlternatives=False|ShowExportOptions=True|TemplateFilename=|BatchMode=5|FormWidth=1600|FormHeight=825|SupplierProdQty=1|SupplierAutoQty=False|SupplierUseCachedPricing=False|SupplierCurrency=<none>
+>>>>>>> 8daa45d4e808d0f516ca48413f5db2853e6956d0
 Configuration1_Name4=GroupOrder
 Configuration1_Item4=Comment=True|Footprint=True
 Configuration1_Name5=SortOrder
 Configuration1_Item5=Designator=Up|Comment=Up|Footprint=Up
 Configuration1_Name6=VisibleOrder
+<<<<<<< HEAD
+Configuration1_Item6=Comment=100|Description=100|Designator=100|Digi-Key_Part_Number=100|Digi-Key_Purchase_URL=100|Footprint=100|LibRef=100|Quantity=100
+=======
 Configuration1_Item6=Comment=100|Description=226|Designator=79|Footprint=79|LibRef=79|Quantity=78|Supplier Part Number 1=80
+>>>>>>> 8daa45d4e808d0f516ca48413f5db2853e6956d0
 OutputType2=ComponentCrossReference
 OutputName2=Component Cross Reference Report
 OutputDocumentPath2=
@@ -653,7 +684,11 @@ OutputDefault6=0
 [OutputGroup7]
 Name=Other Outputs
 Description=
+<<<<<<< HEAD
+TargetPrinter=Send To OneNote 2016
+=======
 TargetPrinter=Microsoft Print to PDF
+>>>>>>> 8daa45d4e808d0f516ca48413f5db2853e6956d0
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
 OutputType1=Text Print
 OutputName1=Text Print
@@ -833,7 +868,11 @@ PageOptions29=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|Print
 [OutputGroup8]
 Name=Validation Outputs
 Description=
+<<<<<<< HEAD
+TargetPrinter=Send To OneNote 2016
+=======
 TargetPrinter=Microsoft Print to PDF
+>>>>>>> 8daa45d4e808d0f516ca48413f5db2853e6956d0
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
 OutputType1=Component states check
 OutputName1=Vault's components states check
@@ -872,7 +911,11 @@ OutputDefault6=0
 [OutputGroup9]
 Name=Export Outputs
 Description=
+<<<<<<< HEAD
+TargetPrinter=Send To OneNote 2016
+=======
 TargetPrinter=Microsoft Print to PDF
+>>>>>>> 8daa45d4e808d0f516ca48413f5db2853e6956d0
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
 OutputType1=AutoCAD dwg/dxf PCB
 OutputName1=AutoCAD dwg/dxf File PCB
@@ -923,7 +966,11 @@ OutputDefault9=0
 [OutputGroup10]
 Name=PostProcess Outputs
 Description=
+<<<<<<< HEAD
+TargetPrinter=Send To OneNote 2016
+=======
 TargetPrinter=Microsoft Print to PDF
+>>>>>>> 8daa45d4e808d0f516ca48413f5db2853e6956d0
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
 OutputType1=Copy Files
 OutputName1=Copy Files
