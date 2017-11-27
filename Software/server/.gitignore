@@ -1,2 +1,3 @@
 server.secret
 *.pyc
+nohup.out

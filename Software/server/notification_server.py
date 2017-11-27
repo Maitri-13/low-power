@@ -5,7 +5,7 @@ import boto3
 
 LISTEN_PORT = 5555
 RECV_LEN    = 2048
-TOPIC_ARN   = "arn:aws:sns:us-west-2:159958132277:test_topic"
+TOPIC_ARN   = "arn:aws:sns:us-west-2:159958132277:intrusionPushNotification"
 
 
 
