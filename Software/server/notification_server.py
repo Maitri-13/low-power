@@ -8,6 +8,7 @@ import boto3
 LISTEN_PORT  = 5555
 RECV_LEN     = 2048
 TOPIC_ARN    = "arn:aws:sns:us-west-2:159958132277:intrusionPushNotification"
+#TOPIC_ARN = "arn:aws:sns:us-west-2:159958132277:test_topic"
 RDS_HOST     = "intrusion-events.cyjeijyfmmbt.us-west-2.rds.amazonaws.com"
 RDS_DATABASE = "events"
 
@@ -43,16 +44,32 @@ def main():
 
 			input_data = curr_conn.recv(RECV_LEN)
 		
-			#try:
-			json_data = json.loads(input_data)	
-			message = json_data['message']
-			node_id = json_data['node']
-			location = json_data['location']
-			timestamp = json_data['timestamp']
-			print("[%d] received message from node %d: \"%s\"" % (timestamp, node_id, message))
+			print input_data
+			json_data = json.loads(input_data)
+			json_data['data']['body']['message']   = str(json_data['data']['body']['message'])
+			json_data['data']['body']['node']      = str(json_data['data']['body']['node'])
+			json_data['data']['body']['location']  = str(json_data['data']['body']['location'])
+			json_data['data']['body']['timestamp'] = int(json_data['data']['body']['timestamp'])
+
+
+
+			message   = json_data['data']['body']['message']  
+			node_id   = json_data['data']['body']['node']     
+			location  = json_data['data']['body']['location'] 
+			timestamp = json_data['data']['body']['timestamp']
 
 			out_message = json.dumps(json_data)
 			print("Attempting to publish %s to %s" % (out_message, TOPIC_ARN))
+##			out_message = """
+##{
+##"to" : "/topics/global",
+##"data" : {
+##"key-1" : "value-q",
+##"key-2" : "value-a",
+##"key-3" : "value-z"
+##}
+##}
+##"""
 
 			response = client.publish(Message=out_message, TopicArn=TOPIC_ARN)
 			format_response = response['MessageId']
