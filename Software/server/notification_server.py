@@ -1,14 +1,13 @@
 #!/usr/bin/python
 
 import mysql.connector
-import socket, json
+import socket, json, datetime
 import boto3
 
 # config variables for the RDS database
 LISTEN_PORT  = 5555
 RECV_LEN     = 2048
 TOPIC_ARN    = "arn:aws:sns:us-west-2:159958132277:intrusionPushNotification"
-#TOPIC_ARN = "arn:aws:sns:us-west-2:159958132277:test_topic"
 RDS_HOST     = "intrusion-events.cyjeijyfmmbt.us-west-2.rds.amazonaws.com"
 RDS_DATABASE = "events"
 
@@ -50,26 +49,22 @@ def main():
 			json_data['data']['body']['node']      = str(json_data['data']['body']['node'])
 			json_data['data']['body']['location']  = str(json_data['data']['body']['location'])
 			json_data['data']['body']['timestamp'] = int(json_data['data']['body']['timestamp'])
+			json_data['data']['body']['aud_path'] = str(json_data['data']['body']['aud_path'])
+			json_data['data']['body']['img_path'] = str(json_data['data']['body']['img_path'])
 
+			message    = json_data['data']['body']['message']  
+			node_id    = json_data['data']['body']['node']     
+			location   = json_data['data']['body']['location'] 
+			timestamp  = json_data['data']['body']['timestamp']
+			audio_path = json_data['data']['body']['aud_path']
+			image_path = json_data['data']['body']['img_path']
 
+	
+			timestamp_fmt = datetime.datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M:%S')
 
-			message   = json_data['data']['body']['message']  
-			node_id   = json_data['data']['body']['node']     
-			location  = json_data['data']['body']['location'] 
-			timestamp = json_data['data']['body']['timestamp']
 
 			out_message = json.dumps(json_data)
 			print("Attempting to publish %s to %s" % (out_message, TOPIC_ARN))
-##			out_message = """
-##{
-##"to" : "/topics/global",
-##"data" : {
-##"key-1" : "value-q",
-##"key-2" : "value-a",
-##"key-3" : "value-z"
-##}
-##}
-##"""
 
 			response = client.publish(Message=out_message, TopicArn=TOPIC_ARN)
 			format_response = response['MessageId']
@@ -78,9 +73,11 @@ def main():
 			cnx = mysql.connector.connect(user=RDS_USER, password=RDS_PASSWORD, database=RDS_DATABASE, host=RDS_HOST)
 			cursor = cnx.cursor()
 
-			insert_str = "INSERT INTO intrusion_events (node_id, location, message, unixtime) VALUES (%s, %s, %s, %s)"
+			#insert_str = "INSERT INTO intrusion_events (node_id, location, message, unixtime) VALUES (%s, %s, %s, %s)"
+			insert_str = "INSERT INTO intrusion_events (node_id, location, message, unixtime, audio_path, image_path) VALUES (%s, %s, %s, %s, %s, %s)"
 
-			values = (node_id, location, message, timestamp)
+			#values = (node_id, location, message, timestamp)
+			values = (node_id, location, message, timestamp_fmt, audio_path, image_path)
 
 			cursor.execute(insert_str, values)
 			cnx.commit()
