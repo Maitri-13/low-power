@@ -28,6 +28,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.net.URL;
+import java.util.Iterator;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     private ProgressDialog progressDialog;
     private boolean initialStage = true;
+    TextView text;
 
 
     private class MyBroadcastReceiver extends BroadcastReceiver {
@@ -46,9 +48,28 @@ public class MainActivity extends AppCompatActivity {
             Log.i("Broadcast Receiver", "about to call onReceive");
             Bundle extras = intent.getExtras();
             String state = extras.getString("extra");
-            TextView text = (TextView) findViewById(R.id.textView2);
-            text.setText(state);// update your textView in the main layout
+            try {
+                JSONObject objJSON = new JSONObject(state);
+                JSONObject temp = objJSON.getJSONObject("data").getJSONObject("body");
 
+                String message = temp.getString("message");
+                String location = temp.getString("location");
+                int time = temp.getInt("timestamp");
+                int nodeId = temp.getInt("node");
+
+                String finalString = time  + " " + message + " " + nodeId + " " + location;
+                String imagePath = temp.getString("img_path");
+                String audioPath = temp.getString("aud_path");
+
+                text = (TextView) findViewById(R.id.textView2);
+                text.setText(finalString);
+                // update your textView in the main layout
+
+            }
+            catch (Exception e)
+            {
+                Log.i("exception", e.toString());
+            }
         }
     }
 
@@ -75,11 +96,11 @@ public class MainActivity extends AppCompatActivity {
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                class NewThread extends AsyncTask<String, Void, String > {
+                class NewThread extends AsyncTask<String, Void, JSONObject > {
 
                     private Exception exception;
 
-                    protected String doInBackground(String... urls)
+                    protected JSONObject doInBackground(String... urls)
                     {
                         try {
                             // Creating new socket connection to the IP (first parameter) and its opened port (second parameter)
@@ -91,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                             String outMsg = "DATA REQUEST";
                             // Write message to stream
                             out.write(outMsg);
+
 
                             // Flush the data from the stream to indicate end of message
                             out.flush();
@@ -104,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject my_json = null;
                                 my_json = new JSONObject(strTcp);
 
-                            return strTcp;
+                            return my_json;
                         }
                         catch (Exception e) {
                             this.exception = e;
@@ -115,11 +137,51 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
 
-                    protected void onPostExecute(String onUsed)
+                    protected void onPostExecute(JSONObject onUsed)
                     {
-                        historyIntent.putExtra("json", onUsed);
-                    String newText = historyIntent.getStringExtra("json");
-                        Log.i("print!!!!!!1", newText );
+                        Log.i("POST_EXECUTE", "JSON CONTENTS: "+onUsed.toString());
+                        String jsonArraytemp[] = new String[10];
+                       for (int i =0; i<10; i++) jsonArraytemp[i] = "";
+
+                        int k =0;
+                        int index =0;
+                        Iterator<String > it = onUsed.keys();
+
+                        while(it.hasNext())
+                        //while(k < 10)
+                        {
+                            index ++;
+                            String thiskey = it.next();
+
+                            Log.i("key", thiskey);
+                            try
+                            {
+                                String message = onUsed.getJSONObject(thiskey).getString("message");
+                                String time = onUsed.getJSONObject(thiskey).getString("unixtime");
+                                String node_id = onUsed.getJSONObject(thiskey).getString("node_id");
+                                String location = onUsed.getJSONObject(thiskey).getString("location");
+
+                                String finalDate = time + " " + message+  " " + location;
+                                jsonArraytemp[k++] = finalDate;
+
+                            }
+                            catch (Exception e)
+                            {
+                                Log.i("error", e.toString());
+                            }
+                        }
+                        Log.i("POST_EXECUTE", "keys iteration complete");
+
+                        for (String i : jsonArraytemp)
+                        {
+                            Log.i("array data", i);
+                        }
+
+                        Log.i("before intent" , "a");
+                        historyIntent.putExtra("json", jsonArraytemp);
+                        Log.i("before intent" , "b");
+
+
                         startActivity(historyIntent);
                     }
                 } // class
@@ -131,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
 
         String my_token;
         my_token = FirebaseInstanceId.getInstance().getToken();
@@ -179,16 +242,6 @@ public class MainActivity extends AppCompatActivity {
 
                     }
 
-//                if (count == 0) {
-//                    cameraImage.setImageDrawable(getResources().getDrawable(R.drawable.h3));
-//                    count++;
-//                } else if (count == 1) {
-//                    cameraImage.setImageDrawable(getResources().getDrawable(R.drawable.h));
-//                    count++;
-//                } else {
-//                    cameraImage.setImageDrawable(getResources().getDrawable(R.drawable.hqdefault));
-//                    count = 0;
-//                }
 
         });
 
