@@ -41,12 +41,12 @@ def main():
 
 			if "DATA REQUEST" in input_data:
 				print("Querying Database...")
-				MYSQL_QUERY    = "SELECT node_id, location, message, unixtime  FROM intrusion_events ORDER BY unixtime DESC LIMIT 8;" 
+				MYSQL_QUERY    = "SELECT node_id, location, message, unixtime, t_idx FROM intrusion_events ORDER BY t_idx DESC LIMIT 8;" 
 
 				cursor.execute(MYSQL_QUERY)
 				results_dict = {}
 				counter = 0
-				for (node_id, location, message, unixtime ) in cursor:
+				for (node_id, location, message, unixtime, t_idx ) in cursor:
 					key = "entry-%d" % (counter)
 					results_dict[key] = {}
 					results_dict[key]['node_id']  = str(node_id)
