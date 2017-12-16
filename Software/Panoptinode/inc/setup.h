@@ -30,5 +30,7 @@ int setupLESENSE(void);
 /* Setup SPI */
 int setupLESENSE(void);
 
+int syncuCam(void);
+
 
 #endif /* INC_SETUP_H_ */
