@@ -37,7 +37,7 @@ int main(void)
 
 	/* set LED when ADC noise exceeds threshold */
 	while (1) {
-		getAdcVolt = convertADCtoVolt();
+		/*getAdcVolt = convertADCtoVolt();
 		if (getAdcVolt > 0.018)
 		{
 			GPIO_PinOutSet(gpioPortD, 14);
@@ -45,6 +45,6 @@ int main(void)
 		else
 		{
 			GPIO_PinOutClear(gpioPortD, 14);
-		}
+		}*/
 	}
 }

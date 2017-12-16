@@ -7,6 +7,7 @@
 
 #include "em_adc.h"
 #include "em_cmu.h"
+#include "em_lesense.h"
 #include "hal-config.h"
 
 
@@ -82,8 +83,61 @@ int setupGPIO(void)
 	return 0;
 }
 
+void LedToggle()
+{
+	GPIO_PinOutSet(gpioPortD, 14);
+	Delay(1000);
+	GPIO_PinOutClear(gpioPortD, 14);
+	Delay(1000);
+}
+
+void LESENSE_IRQHandler(void)
+{
+  /* Clear interrupt flag */
+  LESENSE_IntClear(1<<PORTIO_LESENSE_CH0_PIN);
+  LedToggle();
+}
+
 /* Setup SPI */
 int setupLESENSE(void)
 {
+	/*Enable lesense clock*/
+	CMU_ClockEnable(cmuClock_LESENSE, true);
+
+	/*Setting default configuration*/
+	LESENSE_Init_TypeDef init = LESENSE_INIT_DEFAULT;
+
+	/*Changing the necessary variables from the default config*/
+	/*Disabling the decoder*/
+	init.decCtrl.hystIRQ = false;
+	init.decCtrl.hystPRS0 = false;
+	init.decCtrl.hystPRS1 = false;
+	init.decCtrl.hystPRS2 = false;
+
+	/*enabling the prs count*/
+	init.decCtrl.prsCount = true;
+
+	LESENSE_Init(&init,true);
+
+	/* Channel configuration */
+	/* Only one channel is configured for the motion sense application. */
+	LESENSE_ChDesc_TypeDef initLesenseCh = LESENSE_CH_CONF_DEFAULT;
+
+	/*Changing the necessary variables from the default config*/
+	initLesenseCh.enaScanCh = true;
+	initLesenseCh.enaInt = true;
+	initLesenseCh.intMode = lesenseSetIntNegEdge;
+	/*Set threshold*/
+	initLesenseCh.acmpThres = 0x10;
+
+	/* Configure LESENSE channel */
+	GPIO_PinModeSet(PORTIO_LESENSE_CH0_PORT, PORTIO_LESENSE_CH0_PIN, gpioModePushPull, 0);
+	LESENSE_ChannelConfig(&initLesenseCh, PORTIO_LESENSE_CH0_PIN);
+
+	/* Enable interrupt in NVIC. */
+	NVIC_EnableIRQ(LESENSE_IRQn);
+
+	/* Start scan. */
+	LESENSE_ScanStart();
 	return 0;
 }
