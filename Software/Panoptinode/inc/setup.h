@@ -30,7 +30,20 @@ int setupLESENSE(void);
 /* Setup SPI */
 int setupLESENSE(void);
 
-int syncuCam(void);
+int syncCam(void);
+
+void UART_SM(void);
+
+typedef enum _UART_STATE{
+	RESET = 0,
+	SYNC,
+	INIT_JPEG,
+	SET_PKG_SIZE,
+	SNAPSHOT,
+	GET_PICTURE_CMD,
+	GET_PICTURE,
+	EXIT
+}UART_STATE;
 
 
 #endif /* INC_SETUP_H_ */
