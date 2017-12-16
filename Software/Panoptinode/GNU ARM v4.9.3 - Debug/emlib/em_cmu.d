@@ -1,8 +1,7 @@
-emlib/em_cmu.o: \
- C:/SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.0/platform/emlib/src/em_cmu.c \
+emlib/em_cmu.o: ../emlib/em_cmu.c \
  c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\emlib\inc\em_cmu.h \
  c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\device\siliconlabs\efm32pg12b\include\em_device.h \
- c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\device\siliconlabs\efm32pg12b\include\efm32pg12b500f1024gl125.h \
+ c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\device\siliconlabs\efm32pg12b\include\efm32pg12b500f1024gm48.h \
  c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\cmsis\include\core_cm4.h \
  c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\cmsis\include\core_cmInstr.h \
  c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\cmsis\include\cmsis_gcc.h \
@@ -67,7 +66,7 @@ c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\
 
 c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\device\siliconlabs\efm32pg12b\include\em_device.h:
 
-c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\device\siliconlabs\efm32pg12b\include\efm32pg12b500f1024gl125.h:
+c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\device\siliconlabs\efm32pg12b\include\efm32pg12b500f1024gm48.h:
 
 c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\cmsis\include\core_cm4.h:
 

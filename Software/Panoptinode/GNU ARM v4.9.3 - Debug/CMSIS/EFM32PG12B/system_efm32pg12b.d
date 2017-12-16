@@ -1,7 +1,7 @@
 CMSIS/EFM32PG12B/system_efm32pg12b.o: \
- C:/SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.0/platform/Device/SiliconLabs/EFM32PG12B/Source/system_efm32pg12b.c \
+ ../CMSIS/EFM32PG12B/system_efm32pg12b.c \
  c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\device\siliconlabs\efm32pg12b\include\em_device.h \
- c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\device\siliconlabs\efm32pg12b\include\efm32pg12b500f1024gl125.h \
+ c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\device\siliconlabs\efm32pg12b\include\efm32pg12b500f1024gm48.h \
  c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\cmsis\include\core_cm4.h \
  c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\cmsis\include\core_cmInstr.h \
  c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\cmsis\include\cmsis_gcc.h \
@@ -57,7 +57,7 @@ CMSIS/EFM32PG12B/system_efm32pg12b.o: \
 
 c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\device\siliconlabs\efm32pg12b\include\em_device.h:
 
-c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\device\siliconlabs\efm32pg12b\include\efm32pg12b500f1024gl125.h:
+c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\device\siliconlabs\efm32pg12b\include\efm32pg12b500f1024gm48.h:
 
 c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\cmsis\include\core_cm4.h:
 

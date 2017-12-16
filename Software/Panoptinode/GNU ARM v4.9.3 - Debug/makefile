@@ -10,10 +10,7 @@ RM := rm -rf
 -include sources.mk
 -include src/subdir.mk
 -include emlib/subdir.mk
--include Graphics/subdir.mk
--include Drivers/subdir.mk
 -include CMSIS/EFM32PG12B/subdir.mk
--include BSP/subdir.mk
 -include subdir.mk
 -include objects.mk
 
@@ -34,7 +31,7 @@ all: Panoptinode.axf
 Panoptinode.axf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GNU ARM C Linker'
-	arm-none-eabi-gcc -g -gdwarf-2 -mcpu=cortex-m4 -mthumb -T "Panoptinode.ld" -u _printf_float -Xlinker --gc-sections -Xlinker -Map="Panoptinode.map" -mfpu=fpv4-sp-d16 -mfloat-abi=softfp --specs=nano.specs -o Panoptinode.axf "./BSP/bsp_bcc.o" "./BSP/bsp_stk.o" "./CMSIS/EFM32PG12B/startup_efm32pg12b.o" "./CMSIS/EFM32PG12B/system_efm32pg12b.o" "./Drivers/display.o" "./Drivers/displayls013b7dh03.o" "./Drivers/displaypalemlib.o" "./Drivers/rtcdriver.o" "./Drivers/udelay.o" "./Graphics/dmd_display.o" "./Graphics/glib.o" "./Graphics/glib_bitmap.o" "./Graphics/glib_circle.o" "./Graphics/glib_font_narrow_6x8.o" "./Graphics/glib_font_normal_8x8.o" "./Graphics/glib_line.o" "./Graphics/glib_rectangle.o" "./Graphics/glib_string.o" "./emlib/em_adc.o" "./emlib/em_assert.o" "./emlib/em_cmu.o" "./emlib/em_core.o" "./emlib/em_emu.o" "./emlib/em_gpio.o" "./emlib/em_rtcc.o" "./emlib/em_system.o" "./emlib/em_usart.o" "./src/graphics.o" "./src/main.o" "./src/mic.o" "./src/motion.o" -Wl,--start-group -lgcc -lc -lnosys -Wl,--end-group
+	arm-none-eabi-gcc -g -gdwarf-2 -mcpu=cortex-m4 -mthumb -T "Panoptinode.ld" -Xlinker --gc-sections -Xlinker -Map="Panoptinode.map" -mfpu=fpv4-sp-d16 -mfloat-abi=softfp --specs=nano.specs -o Panoptinode.axf "./CMSIS/EFM32PG12B/startup_gcc_efm32pg12b.o" "./CMSIS/EFM32PG12B/system_efm32pg12b.o" "./emlib/em_acmp.o" "./emlib/em_adc.o" "./emlib/em_aes.o" "./emlib/em_assert.o" "./emlib/em_burtc.o" "./emlib/em_can.o" "./emlib/em_cmu.o" "./emlib/em_core.o" "./emlib/em_cryotimer.o" "./emlib/em_crypto.o" "./emlib/em_csen.o" "./emlib/em_dac.o" "./emlib/em_dbg.o" "./emlib/em_dma.o" "./emlib/em_ebi.o" "./emlib/em_emu.o" "./emlib/em_gpcrc.o" "./emlib/em_gpio.o" "./emlib/em_i2c.o" "./emlib/em_idac.o" "./emlib/em_int.o" "./emlib/em_lcd.o" "./emlib/em_ldma.o" "./emlib/em_lesense.o" "./emlib/em_letimer.o" "./emlib/em_leuart.o" "./emlib/em_mpu.o" "./emlib/em_msc.o" "./emlib/em_opamp.o" "./emlib/em_pcnt.o" "./emlib/em_prs.o" "./emlib/em_qspi.o" "./emlib/em_rmu.o" "./emlib/em_rtc.o" "./emlib/em_rtcc.o" "./emlib/em_system.o" "./emlib/em_timer.o" "./emlib/em_usart.o" "./emlib/em_vcmp.o" "./emlib/em_vdac.o" "./emlib/em_wdog.o" "./src/main.o" -Wl,--start-group -lgcc -lc -lnosys -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

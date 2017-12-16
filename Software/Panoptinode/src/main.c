@@ -1,65 +1,50 @@
 /***************************************************************************//**
- * @file
- * @brief 			M A I N . C       F I L E
- * @version 1.0
- *******************************************************************************
- ******************************************************************************/
+ * @file main.c
+ * @brief init the main
+ * @version 5.3.3
+ * @author Chase E Stewart
+ *******************************************************************************/
 
-#include "../includes/main.h"
 
-/***************************************************************************//**
- * Local defines
- ******************************************************************************/
+#include <stdint.h>
+#include <stdbool.h>
 
-/** Time (in ms) between periodic updates of the measurements. */
-#define PERIODIC_UPDATE_MS      1000
+#include "em_device.h"
+#include "em_chip.h"
 
-volatile bool updateDisplay = true;
+#include "hal-config.h"
 
-/** Timer used for periodic update of the measurements. */
-RTCDRV_TimerID_t periodicUpdateTimerId;
+#include "em_cmu.h"
+#include "em_emu.h"
+#include "bsp.h"
 
-/***************************************************************************//**
- * @brief  Main function
- ******************************************************************************/
+#include "../inc/main.h"
+#include "../inc/setup.h"
+#include "../inc/adc.h"
+
 int main(void)
 {
-  //EMU_DCDCInit_TypeDef dcdcInit = EMU_DCDCINIT_STK_DEFAULT;
-  CMU_HFXOInit_TypeDef hfxoInit = CMU_HFXOINIT_STK_DEFAULT;
-  float getAdcVolt;
+	double getAdcVolt;
 
-  /* Chip errata */
-  CHIP_Init();
+	/* Chip errata */
+	CHIP_Init();
 
-  /* Init HFXO with WSTK radio board specific parameters */
-  CMU_HFXOInit(&hfxoInit);
+	/* init HFPER clock */
+	CMU_ClockEnable(cmuClock_HFPER, true);
 
-  /* Switch HFCLK to HFXO and disable HFRCO */
-  CMU_ClockSelectSet(cmuClock_HF, cmuSelect_HFXO);
-  CMU_OscillatorEnable(cmuOsc_HFRCO, false, false);
+	/* Initialize all peripherals */
+	initPeripherals();
 
-  /* Setup ADC */
-  AdcSetup();
-
-  /*Setup GPI0*/
-  GpioSetup();
-
-  RTCDRV_Init();
-  GRAPHICS_Init();
-
-  /* Set up periodic update of the display. */
-  RTCDRV_AllocateTimer(&periodicUpdateTimerId);
-  RTCDRV_StartTimer(periodicUpdateTimerId, rtcdrvTimerTypePeriodic,
-                    PERIODIC_UPDATE_MS, periodicUpdateCallback, NULL);
-
-  updateDisplay = true;
-
-  while (true) {
-    if (updateDisplay) {
-      updateDisplay = false;
-      getAdcVolt = convertADCtoVolt();
-      GRAPHICS_DisplayData(getAdcVolt);
-    }
-    EMU_EnterEM2(false);
-  }
+	/* set LED when ADC noise exceeds threshold */
+	while (1) {
+		getAdcVolt = convertADCtoVolt();
+		if (getAdcVolt > 0.018)
+		{
+			GPIO_PinOutSet(gpioPortD, 14);
+		}
+		else
+		{
+			GPIO_PinOutClear(gpioPortD, 14);
+		}
+	}
 }
