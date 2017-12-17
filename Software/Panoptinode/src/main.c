@@ -8,6 +8,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <time.h>
 
 #include "em_device.h"
 #include "em_chip.h"
@@ -21,6 +22,26 @@
 #include "../inc/main.h"
 #include "../inc/setup.h"
 #include "../inc/adc.h"
+#include "../inc/uart.h"
+
+void delay(int number_of_seconds)
+{
+    // Converting time into milli_seconds
+    int milli_seconds = 1000 * number_of_seconds;
+
+    // Stroing start time
+    clock_t start_time = clock();
+
+    // looping till required time is not acheived
+    while (clock() < start_time + milli_seconds);
+}
+
+void LedToggle()
+{
+	GPIO_PinOutSet(gpioPortD, 14);
+	delay(1);
+	GPIO_PinOutClear(gpioPortD, 14);
+}
 
 int main(void)
 {
@@ -34,8 +55,6 @@ int main(void)
 
 	/* Initialize all peripherals */
 	initPeripherals();
-
-	//BSP_LedClear(1);
 
 	/* set LED when ADC noise exceeds threshold */
 	while (1) {

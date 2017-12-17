@@ -11,6 +11,7 @@
 
 int main(void);
 
-
+void delay(int number_of_seconds);
+void LedToggle();
 
 #endif /* INC_MAIN_H_ */

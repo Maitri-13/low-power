@@ -12,8 +12,8 @@
 /* Init all peripherals*/
 int	initPeripherals(void);
 
+/* Setup ACMP */
 int setupACMP(void);
-
 
 /* Setup ADC */
 int setupADC(void);
@@ -24,29 +24,8 @@ int setupUART(void);
 /* Setup SPI */
 int setupSPI(void);
 
-/* Setup SPI */
+/* Setup GPIO */
 int setupGPIO(void);
-
-/* Setup SPI */
-int setupLESENSE(void);
-
-int syncCam(void);
-
-void UART_SM(void);
-
-void ACMP0_IRQHandler(void);
-
-
-typedef enum _UART_STATE{
-	RESET = 0,
-	SYNC,
-	INIT_JPEG,
-	SET_PKG_SIZE,
-	SNAPSHOT,
-	GET_PICTURE_CMD,
-	GET_PICTURE,
-	EXIT
-}UART_STATE;
 
 
 #endif /* INC_SETUP_H_ */
