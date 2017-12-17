@@ -44,10 +44,12 @@ int	initPeripherals(void)
 	/* Setup SPI */
 	setupGPIO();
 
-	/* Setup SPI */
-	setupLESENSE();
+	setupACMP();
 
-	UART_SM();
+	/* Setup SPI */
+	//setupLESENSE();
+
+	//UART_SM();
 
 	return 0;
 }
@@ -436,19 +438,51 @@ void LESENSE_IRQHandler(void)
   LedToggle();
 }
 
+
+void ACMP0_IRQHandler(void)
+{
+	ACMP_IntClear(ACMP0,ACMP_IFC_EDGE);
+	LedToggle();
+}
 /**************************************************************************//**
  * @brief  Sets up the ACMP
  *****************************************************************************/
-void setupACMP(void)
+int setupACMP(void)
 {
-  /* Configuration structure for ACMP */
-  static const ACMP_Init_TypeDef acmpInit = ACMP_INIT_DEFAULT;
+	CMU_ClockEnable(cmuClock_ACMP0, true);
 
-  /* Initialize ACMP */
-  ACMP_Init(ACMP0, &acmpInit);
-  /* Disable ACMP0 out to a pin. */
-  ACMP_GPIOSetup(ACMP0, 0, false, false);
+	/* ACMP configuration constant table. */
+	static ACMP_Init_TypeDef acmpInit = ACMP_INIT_DEFAULT;
+	acmpInit.interruptOnFallingEdge = true;
+	acmpInit.interruptOnRisingEdge = true;
+	acmpInit.hysteresisLevel_0 = acmpHysteresisLevel13;
+	acmpInit.enable = false;
+
+	/* ACMP configuration constant table. */
+	static ACMP_VBConfig_TypeDef vbConf = ACMP_VBCONFIG_DEFAULT;
+	vbConf.div0 = 4;
+	vbConf.div1 = 4;
+
+	/* Initialize ACMP */
+	ACMP_Init(ACMP0, &acmpInit);
+
+	ACMP_VBSetup(ACMP0, &vbConf);
+
+	ACMP_ChannelSet(ACMP0, acmpInputVBDIV, acmpInputAPORT4YCH0);
+
+	/* Disable ACMP0 out to a pin. */
+	ACMP_GPIOSetup(ACMP0, 0, false, false);
+
+	ACMP_IntEnable(ACMP0, ACMP_IEN_EDGE);
+	ACMP_IntClear(ACMP0, ACMP_IFC_EDGE);
+	/* Enable interrupt in NVIC. */
+	NVIC_EnableIRQ(ACMP0_IRQn);
+
+	ACMP_Enable(ACMP0);
+	return 0;
 }
+
+
 
 /* Setup SPI */
 int setupLESENSE(void)
