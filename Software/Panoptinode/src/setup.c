@@ -454,14 +454,14 @@ int setupACMP(void)
 	/* ACMP configuration constant table. */
 	static ACMP_Init_TypeDef acmpInit = ACMP_INIT_DEFAULT;
 	acmpInit.interruptOnFallingEdge = true;
-	acmpInit.interruptOnRisingEdge = true;
+	acmpInit.interruptOnRisingEdge = false;
 	acmpInit.hysteresisLevel_0 = acmpHysteresisLevel13;
 	acmpInit.enable = false;
 
 	/* ACMP configuration constant table. */
 	static ACMP_VBConfig_TypeDef vbConf = ACMP_VBCONFIG_DEFAULT;
-	vbConf.div0 = 4;
-	vbConf.div1 = 4;
+	vbConf.div0 = 10;
+	vbConf.div1 = 10;
 
 	/* Initialize ACMP */
 	ACMP_Init(ACMP0, &acmpInit);

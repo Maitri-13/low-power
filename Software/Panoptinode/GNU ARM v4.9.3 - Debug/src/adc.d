@@ -1,4 +1,5 @@
-src/main.o: ../src/main.c \
+src/adc.o: ../src/adc.c \
+ c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\emlib\inc\em_adc.h \
  c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\device\siliconlabs\efm32pg12b\include\em_device.h \
  c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\device\siliconlabs\efm32pg12b\include\efm32pg12b500f1024gm48.h \
  c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\cmsis\include\core_cm4.h \
@@ -53,21 +54,9 @@ src/main.o: ../src/main.c \
  c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\device\siliconlabs\efm32pg12b\include\efm32pg12b_dmareq.h \
  c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\device\siliconlabs\efm32pg12b\include\efm32pg12b_af_ports.h \
  c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\device\siliconlabs\efm32pg12b\include\efm32pg12b_af_pins.h \
- c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\emlib\inc\em_chip.h \
- c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\emlib\inc\em_system.h \
- c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\emlib\inc\em_gpio.h \
- c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\emlib\inc\em_bus.h \
- c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\emlib\inc\em_assert.h \
- C:/Users/cstewart/Documents/GitHub/low-power/Software/Panoptinode/hal-config/hal-config.h \
- c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\halconfig\inc\hal-config\hal-config-types.h \
- c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\emlib\inc\em_gpio.h \
- c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\emlib\inc\em_cmu.h \
- c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\emlib\inc\em_emu.h \
- c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\hardware\kit\common\bsp\bsp.h \
- c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\hardware\kit\common\halconfig\bsphalconfig.h \
- c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\hardware\kit\common\bsp\bsp_bcp.h \
- c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\emlib\inc\em_usart.h \
- ../src/../inc/main.h ../src/../inc/setup.h ../src/../inc/adc.h
+ ../src/../inc/adc.h
+
+c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\emlib\inc\em_adc.h:
 
 c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\device\siliconlabs\efm32pg12b\include\em_device.h:
 
@@ -176,37 +165,5 @@ c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\
 c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\device\siliconlabs\efm32pg12b\include\efm32pg12b_af_ports.h:
 
 c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\device\siliconlabs\efm32pg12b\include\efm32pg12b_af_pins.h:
-
-c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\emlib\inc\em_chip.h:
-
-c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\emlib\inc\em_system.h:
-
-c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\emlib\inc\em_gpio.h:
-
-c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\emlib\inc\em_bus.h:
-
-c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\emlib\inc\em_assert.h:
-
-C:/Users/cstewart/Documents/GitHub/low-power/Software/Panoptinode/hal-config/hal-config.h:
-
-c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\halconfig\inc\hal-config\hal-config-types.h:
-
-c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\emlib\inc\em_gpio.h:
-
-c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\emlib\inc\em_cmu.h:
-
-c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\emlib\inc\em_emu.h:
-
-c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\hardware\kit\common\bsp\bsp.h:
-
-c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\hardware\kit\common\halconfig\bsphalconfig.h:
-
-c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\hardware\kit\common\bsp\bsp_bcp.h:
-
-c:\siliconlabs\simplicitystudio\v4\developer\sdks\gecko_sdk_suite\v2.0\platform\emlib\inc\em_usart.h:
-
-../src/../inc/main.h:
-
-../src/../inc/setup.h:
 
 ../src/../inc/adc.h:
