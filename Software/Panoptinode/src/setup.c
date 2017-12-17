@@ -9,14 +9,14 @@
 #include "em_cmu.h"
 #include "em_lesense.h"
 #include "em_usart.h"
-
+#include "em_acmp.h"
 #include "hal-config.h"
 
 #include "../inc/setup.h"
 
 #include <time.h>
 
-//#define RESET
+//#define DORESET
 
 void delay(int number_of_seconds)
 {
@@ -202,9 +202,7 @@ int UART_WriteBuff(uint8_t *pCmdBuffer,int len)
 int UART_VerifyBuff(uint8_t *pverifyBuff,int len)
 {
 	//wait till you receive the data
-	while(!is_received_data) {
-		delay(1);
-		UART_WriteBuff(cmdBuffer,CMDBUFSIZE);}
+	while(!is_received_data) UART_WriteBuff(cmdBuffer,CMDBUFSIZE);
 	is_received_data = 0;
 	for(int i = 0; i < len; i++)
 	{
@@ -219,7 +217,7 @@ void resetCam(void)
 {
 	cmdBuffer[0] = 0xAA;	cmdBuffer[1] = 0x08;
 	cmdBuffer[2] = 0x00;	cmdBuffer[3] = 0x00;
-	cmdBuffer[4] = 0x00;	cmdBuffer[5] = 0x00;
+	cmdBuffer[4] = 0x00;	cmdBuffer[5] = 0xFF;
 	UART_WriteBuff(cmdBuffer,CMDBUFSIZE);
 	delay(5);
 
@@ -264,7 +262,7 @@ int syncCam(void)
 void UART_SM(void)
 {
 	uint32_t imgSize = 0;
-#ifdef RESET
+#ifdef DORESET
 	UART_STATE state = RESET;
 #else
 	UART_STATE state = SYNC;
@@ -291,8 +289,8 @@ void UART_SM(void)
 				// expected response
 				verifyBuffer[0] = 0xAA;	verifyBuffer[1] = 0x0E;
 				verifyBuffer[2] = 0x01;
-				while(UART_VerifyBuff(verifyBuffer,3))
-					UART_WriteBuff(cmdBuffer,CMDBUFSIZE);
+				while(UART_VerifyBuff(verifyBuffer,3));
+
 				state = SET_PKG_SIZE;
 				break;
 			case SET_PKG_SIZE:
@@ -305,8 +303,8 @@ void UART_SM(void)
 				// expected response
 				verifyBuffer[0] = 0xAA;	verifyBuffer[1] = 0x0E;
 				verifyBuffer[2] = 0x06;
-				while(UART_VerifyBuff(verifyBuffer,3))
-					UART_WriteBuff(cmdBuffer,CMDBUFSIZE);
+				while(UART_VerifyBuff(verifyBuffer,3));
+
 				state = SNAPSHOT;
 				break;
 			case SNAPSHOT:
@@ -319,8 +317,8 @@ void UART_SM(void)
 				// expected response
 				verifyBuffer[0] = 0xAA;	verifyBuffer[1] = 0x0E;
 				verifyBuffer[2] = 0x05;
-				while(UART_VerifyBuff(verifyBuffer,3))
-					UART_WriteBuff(cmdBuffer,CMDBUFSIZE);
+				while(UART_VerifyBuff(verifyBuffer,3));
+
 				state = GET_PICTURE_CMD;
 				break;
 			case GET_PICTURE_CMD:
@@ -333,8 +331,13 @@ void UART_SM(void)
 				// expected response
 				verifyBuffer[0] = 0xAA;	verifyBuffer[1] = 0x0E;
 				verifyBuffer[2] = 0x04;
-				while(UART_VerifyBuff(verifyBuffer,2))
-					UART_WriteBuff(cmdBuffer,CMDBUFSIZE);
+
+				/* @FIXME: Everytime returns AA 0E 00 XX XX
+				 * returning ACK correctly
+				 * that means the command ID 00 is wrong
+				 * ACK counter == XX
+				 * */
+				while(UART_VerifyBuff(verifyBuffer,3));
 
 				state = GET_PICTURE;
 				break;
@@ -389,12 +392,15 @@ void UART_SM(void)
 				cmdBuffer[2] = 0x00;	cmdBuffer[3] = 0x00;
 				cmdBuffer[4] = 0xF0;	cmdBuffer[5] = 0xF0;
 				UART_WriteBuff(cmdBuffer,CMDBUFSIZE);
+
 				state = EXIT;
 				break;
-			/*default:
+			/*
+			 default:
 				// Something really bad happened
 				state = EXIT;
-				break;*/
+				break;
+			*/
 		}
 	}
 }
@@ -428,6 +434,20 @@ void LESENSE_IRQHandler(void)
   /* Clear interrupt flag */
   LESENSE_IntClear(1<<PORTIO_LESENSE_CH0_PIN);
   LedToggle();
+}
+
+/**************************************************************************//**
+ * @brief  Sets up the ACMP
+ *****************************************************************************/
+void setupACMP(void)
+{
+  /* Configuration structure for ACMP */
+  static const ACMP_Init_TypeDef acmpInit = ACMP_INIT_DEFAULT;
+
+  /* Initialize ACMP */
+  ACMP_Init(ACMP0, &acmpInit);
+  /* Disable ACMP0 out to a pin. */
+  ACMP_GPIOSetup(ACMP0, 0, false, false);
 }
 
 /* Setup SPI */
