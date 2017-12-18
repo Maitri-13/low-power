@@ -14,11 +14,12 @@
 #include <stdlib.h>
 #include "uartdrv.h"
 #include "string.h"
+#include "em_usart.h"
 
 /* length of command messages */
 #define UART_CMD_LEN 	6
 #define UART_DBL_LEN 	12
-#define PACK_SIZE 		512
+#define PACK_SIZE 		64
 #define DATA_SIZE 		(PACK_SIZE - UART_CMD_LEN)
 
 extern UARTDRV_HandleData_t UART_handleData;
@@ -37,5 +38,6 @@ uint32_t drv_UART_SM(void);
 
 uint8_t *getImage(uint32_t image_size);
 
+uint8_t *all_in_one(void);
 
 #endif /* INC_UART_DRIVE_H_ */

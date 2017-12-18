@@ -70,8 +70,7 @@ int main(void)
 		EMU_EnterEM2(true);
 		for(int test=0;test<8701;test++);
 		drv_syncCam();
-		img_size = drv_UART_SM();
-		getImage(img_size);
+		all_in_one();
 		led_clear();
 	}
 }
