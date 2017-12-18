@@ -10,42 +10,47 @@
 #include <stdbool.h>
 #include <time.h>
 
-#include "em_device.h"
-#include "em_chip.h"
-
 #include "hal-config.h"
 
+#include "em_device.h"
+#include "em_chip.h"
 #include "em_cmu.h"
 #include "em_emu.h"
+#include "em_acmp.h"
 #include "bsp.h"
 
 #include "../inc/main.h"
-#include "../inc/setup.h"
-#include "../inc/adc.h"
-#include "../inc/uart.h"
 
-void delay(int number_of_seconds)
+
+/**************************************************************************//**
+ * @brief  delay for some part of time
+ *****************************************************************************/
+void delay(int number_of_msec)
 {
     // Converting time into milli_seconds
-    int milli_seconds = 1000 * number_of_seconds;
+    int milli_seconds = 1 * number_of_msec;
+    int intermediate = 0;
 
     // Stroing start time
     clock_t start_time = clock();
 
     // looping till required time is not acheived
-    while (clock() < start_time + milli_seconds);
+    while (intermediate < start_time + milli_seconds)
+    {
+    	intermediate = clock();
+    }
+
+    clock_t end_time = clock();
 }
 
-void LedToggle()
-{
-	GPIO_PinOutSet(gpioPortD, 14);
-	delay(1);
-	GPIO_PinOutClear(gpioPortD, 14);
-}
 
+
+/**************************************************************************//**
+ * @brief  init all periphs, go to sleep, then wake up and do main
+ *****************************************************************************/
 int main(void)
 {
-	double getAdcVolt;
+	uint32_t img_size;
 
 	/* Chip errata */
 	CHIP_Init();
@@ -53,20 +58,22 @@ int main(void)
 	/* init HFPER clock */
 	CMU_ClockEnable(cmuClock_HFPER, true);
 
+	led_clear();
+
 	/* Initialize all peripherals */
 	initPeripherals();
 
 	/* set LED when ADC noise exceeds threshold */
-	while (1) {
-		/*
-		getAdcVolt = convertADCtoVolt();
-		if (getAdcVolt > 0.018)
-		{
-			GPIO_PinOutSet(gpioPortD, 14);
-		}
-		else
-		{
-			GPIO_PinOutClear(gpioPortD, 14);
-		}*/
+	while (1)
+	{
+		ACMP_IntEnable(ACMP0, ACMP_IEN_EDGE);
+		EMU_EnterEM2(true);
+		for(int test=0;test<8701;test++);
+		drv_syncCam();
+		img_size = drv_UART_SM();
+		getImage(img_size);
+		led_clear();
 	}
 }
+
+
