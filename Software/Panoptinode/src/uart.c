@@ -26,33 +26,33 @@ static volatile uint8_t imgBuffer[IMGBUFSIZE];    /**< Buffer to store image dat
 /**************************************************************************//**
  * @brief UART/LEUART IRQ Handler
  *****************************************************************************/
-void USART0_RX_IRQHandler(void)
-{
-  if (USART0->STATUS & USART_STATUS_RXDATAV) {
-	is_received_data = 1;
-	if (is_image_data == 0){
-		/* Store Data */
-		rxBuffer[rxWriteIndex] = USART_Rx(USART0);
-		rxWriteIndex++;
-		rxCount++;
-		if (rxWriteIndex == CMDBUFSIZE) {
-		  rxWriteIndex = 0;
-		}
-		/* Check for overflow - flush buffer */
-		if (rxCount > CMDBUFSIZE) {
-		  rxWriteIndex = 0;
-		  rxCount      = 0;
-		  rxReadIndex  = 0;
-		}
-	}
-	else{
-		imgBuffer[imgIndex] = USART_Rx(USART0);
-		imgIndex++;
-		if (imgIndex == IMGBUFSIZE)
-			imgIndex = 0;
-	}
-  }
-}
+//void USART0_RX_IRQHandler(void)
+//{
+//  if (USART0->STATUS & USART_STATUS_RXDATAV) {
+//	is_received_data = 1;
+//	if (is_image_data == 0){
+//		/* Store Data */
+//		rxBuffer[rxWriteIndex] = USART_Rx(USART0);
+//		rxWriteIndex++;
+//		rxCount++;
+//		if (rxWriteIndex == CMDBUFSIZE) {
+//		  rxWriteIndex = 0;
+//		}
+//		/* Check for overflow - flush buffer */
+//		if (rxCount > CMDBUFSIZE) {
+//		  rxWriteIndex = 0;
+//		  rxCount      = 0;
+//		  rxReadIndex  = 0;
+//		}
+//	}
+//	else{
+//		imgBuffer[imgIndex] = USART_Rx(USART0);
+//		imgIndex++;
+//		if (imgIndex == IMGBUFSIZE)
+//			imgIndex = 0;
+//	}
+//  }
+//}
 
 /**************************************************************************//**
  * @brief Receive a byte from USART/LEUART and put into global buffer

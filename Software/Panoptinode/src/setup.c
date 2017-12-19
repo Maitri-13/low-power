@@ -11,6 +11,7 @@
 #include "em_usart.h"
 #include "em_acmp.h"
 #include "hal-config.h"
+#include "em_pcnt.h"
 
 #include "spidrv.h"
 #include "uartdrv.h"
@@ -53,8 +54,53 @@ int	initPeripherals(void)
 	/* Setup ACMP */
 	setupACMP();
 
+	//pcntInit();
+
 	return 0;
 }
+
+/* Frequency of RTCC (CCV1) pulses on PRS channel 4
+   = frequency of LCD polarity inversion. */
+#define RTCC_PULSE_FREQUENCY    (64)
+
+/***************************************************************************//**
+ * @brief   Set up PCNT to generate an interrupt every second.
+ ******************************************************************************/
+void pcntInit(void)
+{
+  PCNT_Init_TypeDef pcntInit = PCNT_INIT_DEFAULT;
+
+  /* Enable PCNT clock */
+  CMU_ClockEnable(cmuClock_PCNT0, true);
+  /* Set up the PCNT to count RTCC_PULSE_FREQUENCY pulses -> one second */
+  pcntInit.mode = pcntModeOvsSingle;
+  pcntInit.top = RTCC_PULSE_FREQUENCY;
+  pcntInit.s1CntDir = false;
+  /* The PRS channel*/
+  pcntInit.s0PRS = pcntPRSCh0;
+
+  PCNT_Init(PCNT0, &pcntInit);
+
+  /* Select PRS as the input for the PCNT */
+  PCNT_PRSInputEnable(PCNT0, pcntPRSInputS0, true);
+
+  /* Enable PCNT interrupt every second */
+  NVIC_EnableIRQ(PCNT0_IRQn);
+  PCNT_IntEnable(PCNT0, PCNT_IF_OF);
+}
+
+/* PCNT interrupt counter */
+static volatile bool is_one_second = false;
+
+/***************************************************************************//**
+ * @brief   This interrupt is triggered at every second by the PCNT
+ ******************************************************************************/
+void PCNT0_IRQHandler(void)
+{
+  PCNT_IntClear(PCNT0, PCNT_IF_OF);
+  is_one_second = true;
+}
+
 
 /**************************************************************************//**
  * @brief  Sets up the ADC
@@ -148,15 +194,16 @@ int setupUART(void)
 /**************************************************************************//**
  * @brief  Sets up the SPI using SPIDRV
  *****************************************************************************/
+/*
 int setupSPI2(void)
 {
 
 	SPI_handle = &SPI_handleData;
 
-	/* Initialize uart clock */
+	///* Initialize uart clock /
 	CMU_ClockEnable(cmuClock_USART1, true);
 
-	/* Initialize the SPI */
+	//* Initialize the SPI /
 	SPIDRV_Init_t initSPI   = SPIDRV_MASTER_USART1;
 	initSPI.portLocationClk = SPI_CLK_LOC;
 	initSPI.portLocationCs  = SPI_CS_LOC;
@@ -165,7 +212,7 @@ int setupSPI2(void)
 	initSPI.csControl       = spidrvCsControlApplication;
 	SPIDRV_Init(SPI_handle,&initSPI);
 
-	/* Enable RX interrupts */
+	//* Enable RX interrupts /
     USART_IntEnable(USART1, USART_IF_RXDATAV);
     NVIC_EnableIRQ(USART1_RX_IRQn);
 
@@ -173,7 +220,7 @@ int setupSPI2(void)
     return 0;
 }
 
-
+*/
 /**************************************************************************//**
  * @brief  Sets up the SPI using USART
  *****************************************************************************/

@@ -20,10 +20,11 @@ uint8_t ACK_MSG[]   = {0xAA, 0x0E, 0x0D, 0x00, 0x00, 0x00};
 //uint8_t GET_MSG[]   = {0xAA, 0x04, 0x01, 0x00, 0x00, 0x00};
 
 uint8_t MSG_ARRAY[3][6] = {{0xAA, 0x01, 0x00, 0x07, 0x07, 0x07},
-						  {0xAA, 0x06, 0x08, 0x00, 0x00, 0x00},
+						  {0xAA, 0x06, 0x08, 0x00, 0x02, 0x00},
 						  {0xAA, 0x05, 0x00, 0x00, 0x00, 0x00}};
 uint8_t GET_MSG[]  		= {0xAA, 0x04, 0x01, 0x00, 0x00, 0x00};
 uint8_t PIC_ACK_MSG[]   = {0xAA, 0x0E, 0x00, 0x00, 0x00, 0x00};
+uint8_t END_ACK_MSG[]   = {0xAA, 0x0E, 0x00, 0x00, 0xF0, 0xF0};
 
 /* response consts */
 uint8_t SYN_ACK_RSP[]	= {0xAA, 0x0E, 0x0D};
@@ -42,7 +43,7 @@ void USART0_RX_IRQHandler(void)
 
 
 
-void xmitCbk( UARTDRV_Handle_t UART_handle, Ecode_t transferStatus, uint8_t *data, UARTDRV_Count_t transferCount)
+void xmitCbk(UARTDRV_Handle_t UART_handle, Ecode_t transferStatus, uint8_t *data, UARTDRV_Count_t transferCount)
 {
 	(void) UART_handle;
 	(void) transferStatus;
@@ -121,34 +122,39 @@ uint8_t *all_in_one(void)
 		for(uint8_t k; k<30;k++);
 	}
 
-	image_size |= (dbl_buffer[9] << 16);
+	image_size |= (dbl_buffer[11] << 16);
 	image_size |= (dbl_buffer[10] << 8);
-	image_size |= dbl_buffer[11];
+	image_size |= dbl_buffer[9];
 
 	num_packages = image_size/DATA_SIZE;
-	//uint8_t data_buffer[image_size];
+	uint8_t data_buffer[image_size];
 
 	for(ack_id = 0; ack_id< num_packages; ack_id++){
 
 
 		/* Set ACK msg*/
+		/*
 		PIC_ACK_MSG[4]=*((uint8_t*)&(ack_id)+1);
-		PIC_ACK_MSG[5]=*((uint8_t*)&(ack_id)+0);
+		PIC_ACK_MSG[5]=*((uint8_t*)&(ack_id)+0);*/
+		PIC_ACK_MSG[4] = ack_id;
 
 		/* get_pic */
 		UARTDRV_TransmitB(UART_handle, PIC_ACK_MSG, UART_CMD_LEN);
 		UARTDRV_ReceiveB(UART_handle, raw_buffer, PACK_SIZE);
 
 
-		actual_pack_size = (raw_buffer[2] << 8) + raw_buffer[3];
+		actual_pack_size = (raw_buffer[3] << 8) + raw_buffer[2];
 
 		/* copy image data into data buffer */
 		offset = DATA_SIZE * ack_id;
-		//for(int i=0;i<actual_pack_size;i++){
-		//	data_buffer[offset+i] = raw_buffer[i+4];
-		//}
+
+		for(int i=0;i<actual_pack_size;i++){
+			data_buffer[offset+i] = raw_buffer[i+4];
+		}
 	}
-	return raw_buffer;
+	/*send end of msg ack*/
+	UARTDRV_Transmit(UART_handle, END_ACK_MSG, UART_CMD_LEN,xmitCbk);
+	return NULL;
 }
 
 

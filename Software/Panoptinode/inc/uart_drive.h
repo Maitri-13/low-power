@@ -19,7 +19,7 @@
 /* length of command messages */
 #define UART_CMD_LEN 	6
 #define UART_DBL_LEN 	12
-#define PACK_SIZE 		64
+#define PACK_SIZE 		512
 #define DATA_SIZE 		(PACK_SIZE - UART_CMD_LEN)
 
 extern UARTDRV_HandleData_t UART_handleData;

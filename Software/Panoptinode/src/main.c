@@ -67,7 +67,7 @@ int main(void)
 	while (1)
 	{
 		ACMP_IntEnable(ACMP0, ACMP_IEN_EDGE);
-		EMU_EnterEM2(true);
+		//EMU_EnterEM2(true);
 		for(int test=0;test<8701;test++);
 		drv_syncCam();
 		all_in_one();
