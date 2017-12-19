@@ -23,29 +23,6 @@
 
 
 /**************************************************************************//**
- * @brief  delay for some part of time
- *****************************************************************************/
-void delay(int number_of_sec)
-{
-    // Converting time into milli_seconds
-    int milli_seconds = 1000 * number_of_sec;
-    int intermediate = 0;
-
-    // Stroing start time
-    clock_t start_time = clock();
-
-    // looping till required time is not acheived
-    while (intermediate < start_time + milli_seconds)
-    {
-    	intermediate = clock();
-    }
-
-    clock_t end_time = clock();
-}
-
-
-
-/**************************************************************************//**
  * @brief  init all periphs, go to sleep, then wake up and do main
  *****************************************************************************/
 int main(void)
@@ -56,21 +33,22 @@ int main(void)
 	/* Chip errata */
 	CHIP_Init();
 
-	/* init HFPER clock */
-	CMU_ClockEnable(cmuClock_HFPER, true);
+	/* Init HFPER clock */
+	CMU_ClockEnable(cmuClock_HFPER,true);
 
 	led_clear();
 
 	/* Initialize all peripherals */
 	initPeripherals();
 
+	/* Run your functions */
 	while (1)
 	{
 
 		ACMP_IntEnable(ACMP0, ACMP_IEN_EDGE);
 		EMU_EnterEM2(true);
 		//getMemoryDeviceID();
-		getWGMHello();
+		get_Picture();
 		led_clear();
 	}
 }

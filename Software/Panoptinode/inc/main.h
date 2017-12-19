@@ -13,7 +13,6 @@
 #include "../inc/uart_drive.h"
 #include "../inc/led.h"
 
-
 /* state vars */
 uint16_t major_state;
 uint16_t minor_state;
@@ -30,13 +29,7 @@ typedef enum
 	SHDWN
 } major_state_enum;
 
-
 /* main function */
 int main(void);
-
-/* delay for a certain length of time */
-void delay(int number_of_sec);
-
-
 
 #endif /* INC_MAIN_H_ */

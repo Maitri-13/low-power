@@ -10,6 +10,7 @@
 #include "em_lesense.h"
 #include "em_usart.h"
 #include "em_acmp.h"
+#include "em_timer.h"
 #include "hal-config.h"
 
 #include "spidrv.h"
@@ -20,6 +21,11 @@
 DEFINE_BUF_QUEUE(EMDRV_UARTDRV_MAX_CONCURRENT_RX_BUFS, rxBufferQueue);
 DEFINE_BUF_QUEUE(EMDRV_UARTDRV_MAX_CONCURRENT_TX_BUFS, txBufferQueue);
 
+/* 13671 Hz -> 14Mhz (clock frequency) / 1024 (prescaler)
+  Setting TOP to 27342 results in an overflow each 2 seconds */
+#define TOP 27342
+volatile int led_count = 0;
+volatile bool uart_flag = true;
 
 /**************************************************************************//**
  * @brief handle ACMP wakeups
@@ -29,10 +35,8 @@ void ACMP0_IRQHandler(void)
 	ACMP_IntClear(ACMP0,ACMP_IFC_EDGE);
 	ACMP_IntClear(ACMP0,ACMP_IFC_WARMUP);
 	ACMP_IntDisable(ACMP0, ACMP_IEN_EDGE);
-	led_toggle();
+	led_set();
 }
-
-
 
 /**************************************************************************//**
  * @brief  INIT Peripherals one-by-one
@@ -51,10 +55,67 @@ int	initPeripherals(void)
 	/* Setup SPI */
 	setupSPI2();
 
+	setupTimer();
+
 	/* Setup ACMP */
 	setupACMP();
 
 	return 0;
+}
+
+/**************************************************************************//**
+ * @brief TIMER0_IRQHandler
+ * Interrupt Service Routine TIMER0 Interrupt Line
+ *****************************************************************************/
+void TIMER0_IRQHandler(void)
+{
+  /* Clear flag for TIMER0 overflow interrupt */
+  TIMER_IntClear(TIMER0, TIMER_IF_OF);
+
+  /* Toggle LED ON/OFF */
+  led_count++;
+  if(led_count==10)	led_count = 0;
+
+  uart_flag = false;
+}
+
+/**************************************************************************//**
+ * @brief  Sets up the Timer
+ *****************************************************************************/
+int setupTimer(void)
+{
+	/* Enable clock for TIMER0 module */
+	CMU_ClockEnable(cmuClock_TIMER0, true);
+
+	/* Select TIMER0 parameters */
+	  TIMER_Init_TypeDef timerInit =
+	  {
+		.enable     = true,
+		.debugRun   = true,
+		.prescale   = timerPrescale1024,
+		.clkSel     = timerClkSelHFPerClk,
+		.fallAction = timerInputActionNone,
+		.riseAction = timerInputActionNone,
+		.mode       = timerModeUp,
+		.dmaClrAct  = false,
+		.quadModeX4 = false,
+		.oneShot    = false,
+		.sync       = false,
+	  };
+
+	  /* Enable overflow interrupt */
+	  TIMER_IntEnable(TIMER0, TIMER_IF_OF);
+
+	  /* Enable TIMER0 interrupt vector in NVIC */
+	  NVIC_EnableIRQ(TIMER0_IRQn);
+
+	  /* Set TIMER Top value */
+	  TIMER_TopSet(TIMER0, TOP);
+
+	  /* Configure TIMER */
+	  TIMER_Init(TIMER0, &timerInit);
+
+	  return 0;
 }
 
 /**************************************************************************//**
@@ -105,7 +166,6 @@ int setupUART2(void)
 	return 0;
 }
 
-
 /**************************************************************************//**
  * @brief  Sets up the UART
  *****************************************************************************/
@@ -151,15 +211,16 @@ int setupUART(void)
 /**************************************************************************//**
  * @brief  Sets up the SPI using SPIDRV
  *****************************************************************************/
+/*
 int setupSPI2(void)
 {
 
 	SPI_handle = &SPI_handleData;
 
-	/* Initialize uart clock */
+	///* Initialize uart clock /
 	CMU_ClockEnable(cmuClock_USART1, true);
 
-	/* Initialize the SPI */
+	//* Initialize the SPI /
 	SPIDRV_Init_t initSPI   = SPIDRV_MASTER_USART1;
 	initSPI.portLocationClk = SPI_CLK_LOC;
 	initSPI.portLocationCs  = SPI_CS_LOC;
@@ -169,7 +230,7 @@ int setupSPI2(void)
 	initSPI.csControl       = spidrvCsControlApplication;
 	SPIDRV_Init(SPI_handle,&initSPI);
 
-	/* Enable RX interrupts */
+	//* Enable RX interrupts /
     USART_IntEnable(USART1, USART_IF_RXDATAV);
     NVIC_EnableIRQ(USART1_RX_IRQn);
 
@@ -182,7 +243,7 @@ int setupSPI2(void)
     return 0;
 }
 
-
+*/
 /**************************************************************************//**
  * @brief  Sets up the SPI using USART
  *****************************************************************************/
