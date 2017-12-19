@@ -8,43 +8,41 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-
-#include "em_device.h"
-#include "em_chip.h"
+#include <time.h>
 
 #include "hal-config.h"
 
+#include "em_device.h"
+#include "em_chip.h"
 #include "em_cmu.h"
 #include "em_emu.h"
+#include "em_acmp.h"
 #include "bsp.h"
 
 #include "../inc/main.h"
-#include "../inc/setup.h"
-#include "../inc/adc.h"
 
+/**************************************************************************//**
+ * @brief  init all periphs, go to sleep, then wake up and do main
+ *****************************************************************************/
 int main(void)
 {
-	double getAdcVolt;
-
 	/* Chip errata */
 	CHIP_Init();
 
-	/* init HFPER clock */
-	CMU_ClockEnable(cmuClock_HFPER, true);
+	/* Init HFPER clock */
+	CMU_ClockEnable(cmuClock_HFPER,true);
+
+	led_clear();
 
 	/* Initialize all peripherals */
 	initPeripherals();
 
-	/* set LED when ADC noise exceeds threshold */
-	while (1) {
-		getAdcVolt = convertADCtoVolt();
-		if (getAdcVolt > 0.018)
-		{
-			GPIO_PinOutSet(gpioPortD, 14);
-		}
-		else
-		{
-			GPIO_PinOutClear(gpioPortD, 14);
-		}
+	/* Run your functions */
+	while (1)
+	{
+		ACMP_IntEnable(ACMP0, ACMP_IEN_EDGE);
+		get_Picture();
 	}
 }
+
+
