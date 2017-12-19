@@ -64,6 +64,7 @@ int	initPeripherals(void)
   Setting TOP to 27342 results in an overflow each 2 seconds */
 #define TOP 27342
 int led_count = 0;
+bool uart_flag = true;
 /**************************************************************************//**
  * @brief TIMER0_IRQHandler
  * Interrupt Service Routine TIMER0 Interrupt Line
@@ -76,6 +77,8 @@ void TIMER0_IRQHandler(void)
   /* Toggle LED ON/OFF */
   led_count++;
   if(led_count==10)	led_count = 0;
+
+  uart_flag = false;
 }
 
 int setupTimer(void)

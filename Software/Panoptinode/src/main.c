@@ -40,7 +40,6 @@ void delay(int number_of_msec)
     	intermediate = clock();
     }
 
-    clock_t end_time = clock();
 }
 
 
@@ -50,15 +49,13 @@ void delay(int number_of_msec)
  *****************************************************************************/
 int main(void)
 {
-	uint32_t img_size;
-
 	/* Chip errata */
 	CHIP_Init();
 
 	/* init HFPER clock */
 	CMU_ClockEnable(cmuClock_HFPER,true);
 
-	//led_clear();
+	led_clear();
 
 	/* Initialize all peripherals */
 	initPeripherals();

@@ -37,7 +37,7 @@ uint8_t cmd_buffer[UART_CMD_LEN];
 uint8_t data_buffer[MAX_IMAGE_SIZE];
 volatile uint8_t recv_bytes = 0;
 
-extern int led_count;
+extern bool uart_flag;
 
 void USART0_RX_IRQHandler(void)
 {
@@ -113,10 +113,15 @@ uint8_t *all_in_one(void)
 	}
 
 	/*Delay*/
-	//while(led_count%2);
+	uart_flag = true;
+	while(uart_flag);
+
 	UARTDRV_TransmitB(UART_handle, GET_MSG, UART_CMD_LEN);
+
 	/*Delay*/
-	//while(led_count%2);
+	/*uart_flag = true;
+	while(uart_flag);*/
+
 	UARTDRV_ReceiveB(UART_handle, dbl_buffer, UART_DBL_LEN);
 
 	image_size |= (dbl_buffer[11] << 16);

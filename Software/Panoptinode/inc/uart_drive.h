@@ -26,7 +26,6 @@
 extern UARTDRV_HandleData_t UART_handleData;
 extern UARTDRV_Handle_t UART_handle;
 
-
 void recvCbk(UARTDRV_Handle_t, Ecode_t transferStatus, uint8_t *data, UARTDRV_Count_t transferCount);
 
 void xmitCbk(UARTDRV_Handle_t, Ecode_t transferStatus, uint8_t *data, UARTDRV_Count_t transferCount);
