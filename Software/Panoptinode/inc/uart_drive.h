@@ -21,6 +21,7 @@
 #define UART_DBL_LEN 	12
 #define PACK_SIZE 		512
 #define DATA_SIZE 		(PACK_SIZE - UART_CMD_LEN)
+#define MAX_IMAGE_SIZE  20240
 
 extern UARTDRV_HandleData_t UART_handleData;
 extern UARTDRV_Handle_t UART_handle;

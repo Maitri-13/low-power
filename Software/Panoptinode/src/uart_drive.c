@@ -34,6 +34,7 @@ uint8_t SYN_RSP[]	    = {0xAA, 0x0D, 0x00, 0x00, 0x00, 0x00};
 uint8_t raw_buffer[PACK_SIZE];
 uint8_t dbl_buffer[UART_DBL_LEN];
 uint8_t cmd_buffer[UART_CMD_LEN];
+uint8_t data_buffer[MAX_IMAGE_SIZE];
 volatile uint8_t recv_bytes = 0;
 
 void USART0_RX_IRQHandler(void)
@@ -115,7 +116,7 @@ uint8_t *all_in_one(void)
 	}
 
 	UARTDRV_TransmitB(UART_handle, GET_MSG, UART_CMD_LEN);
-	UARTDRV_Receive(UART_handle, dbl_buffer, UART_DBL_LEN, recvCbk);
+	UARTDRV_ReceiveB(UART_handle, dbl_buffer, UART_DBL_LEN);
 
 	for(uint16_t j=0; j < 65535; j++)
 	{
@@ -127,7 +128,6 @@ uint8_t *all_in_one(void)
 	image_size |= dbl_buffer[9];
 
 	num_packages = image_size/DATA_SIZE;
-	uint8_t data_buffer[image_size];
 
 	for(ack_id = 0; ack_id< num_packages; ack_id++){
 
