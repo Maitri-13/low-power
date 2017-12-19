@@ -52,7 +52,7 @@ int main(void)
 	/* Chip errata */
 	CHIP_Init();
 
-	/* init HFPER clock */
+	/* Init HFPER clock */
 	CMU_ClockEnable(cmuClock_HFPER,true);
 
 	led_clear();
@@ -60,12 +60,11 @@ int main(void)
 	/* Initialize all peripherals */
 	initPeripherals();
 
-	/* set LED when ADC noise exceeds threshold */
+	/* Run your functions */
 	while (1)
 	{
 		ACMP_IntEnable(ACMP0, ACMP_IEN_EDGE);
 		drv_syncCam();
-		led_toggle();
 		all_in_one();
 	}
 }

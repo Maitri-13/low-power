@@ -92,6 +92,9 @@ int drv_syncCam(void)
 void drv_resetCam(void)
 {
 	UARTDRV_TransmitB(UART_handle,RESET_MSG,UART_CMD_LEN);
+	/*Delay*/
+	uart_flag = true;
+	while(uart_flag);
 }
 
 
@@ -150,8 +153,11 @@ uint8_t *all_in_one(void)
 			data_buffer[offset+i] = raw_buffer[i+4];
 		}
 	}
-	/*send end of msg ack*/
-	UARTDRV_Transmit(UART_handle, END_ACK_MSG, UART_CMD_LEN,xmitCbk);
+	/*last ack*/
+	PIC_ACK_MSG[4] = ack_id;
+
+	/* get_pic */
+	UARTDRV_TransmitB(UART_handle, PIC_ACK_MSG, UART_CMD_LEN);
 	return NULL;
 }
 
