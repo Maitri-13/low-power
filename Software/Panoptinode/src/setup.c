@@ -27,6 +27,7 @@ DEFINE_BUF_QUEUE(EMDRV_UARTDRV_MAX_CONCURRENT_TX_BUFS, txBufferQueue);
 void ACMP0_IRQHandler(void)
 {
 	ACMP_IntClear(ACMP0,ACMP_IFC_EDGE);
+	ACMP_IntClear(ACMP0,ACMP_IFC_WARMUP);
 	ACMP_IntDisable(ACMP0, ACMP_IEN_EDGE);
 	led_toggle();
 }
@@ -48,7 +49,7 @@ int	initPeripherals(void)
 	setupUART2();
 
 	/* Setup SPI */
-	//setupSPI();
+	setupSPI2();
 
 	/* Setup ACMP */
 	setupACMP();
@@ -98,6 +99,8 @@ int setupUART2(void)
 	/* setup the UART type*/
 	UARTDRV_InitUart_t initData = MY_UART; /* check setup.h */
 	UARTDRV_InitUart(UART_handle, &initData);
+
+	GPIO_PinModeSet(UCAM_RST_PORT, UCAM_RST_PIN, gpioModePushPull, 0);
 
 	return 0;
 }
@@ -162,6 +165,7 @@ int setupSPI2(void)
 	initSPI.portLocationCs  = SPI_CS_LOC;
 	initSPI.portLocationTx  = SPI_MOSI_LOC;
 	initSPI.portLocationRx  = SPI_MISO_LOC;
+	initSPI.clockMode		= spidrvClockMode0;
 	initSPI.csControl       = spidrvCsControlApplication;
 	SPIDRV_Init(SPI_handle,&initSPI);
 
@@ -170,6 +174,11 @@ int setupSPI2(void)
     NVIC_EnableIRQ(USART1_RX_IRQn);
 
 
+
+	GPIO_PinModeSet(MEM_HOLD_PORT, MEM_HOLD_PIN, gpioModePushPull, 1);
+	GPIO_PinModeSet(MEM_WP_PORT, MEM_WP_PIN, gpioModePushPull, 1);
+	GPIO_PinModeSet(MEM_CS_PORT, MEM_CS_PIN, gpioModePushPull, 1);
+	GPIO_PinModeSet(SPI_CS_PORT, SPI_CS_PIN, gpioModePushPull, 1);
     return 0;
 }
 

@@ -3,6 +3,10 @@
   <mode name="DefaultMode">
     <property object="DefaultMode" propertyId="mode.diagramLocation" value="100, 100"/>
     <property object="GPIO" propertyId="ABPeripheral.included" value="true"/>
+    <property object="PA5" propertyId="ports.settings.custompinname" value="MEM_WP"/>
+    <property object="PB11" propertyId="ports.settings.custompinname" value="MEM_CS"/>
+    <property object="PB12" propertyId="ports.settings.custompinname" value="MEM_HOLD"/>
+    <property object="PC11" propertyId="ports.settings.custompinname" value="UCAM_RST"/>
     <property object="PD14" propertyId="ports.settings.custompinname" value="LED"/>
     <property object="PD14" propertyId="ports.settings.pinmode" value="Push-pull"/>
     <property object="PORTIO" propertyId="portio.adc0.enable.pos_cx" value="Enabled"/>

@@ -221,6 +221,18 @@
 #endif /* HAL_CONFIG_H */
 
 // $[Custom pin names]
+#define MEM_WP_PIN                       (5)
+#define MEM_WP_PORT                      (gpioPortA)
+
+#define MEM_CS_PIN                       (11)
+#define MEM_CS_PORT                      (gpioPortB)
+
+#define MEM_HOLD_PIN                     (12)
+#define MEM_HOLD_PORT                    (gpioPortB)
+
+#define UCAM_RST_PIN                     (11)
+#define UCAM_RST_PORT                    (gpioPortC)
+
 #define LED_PIN                          (14)
 #define LED_PORT                         (gpioPortD)
 

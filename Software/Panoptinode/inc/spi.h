@@ -13,5 +13,12 @@
 extern SPIDRV_HandleData_t SPI_handleData;
 extern SPIDRV_Handle_t SPI_handle;
 
+void mxmitCbk( SPIDRV_Handle_t UART_handle, Ecode_t transferStatus, uint8_t *data, int transferCount);
+void mrecvCbk( SPIDRV_Handle_t UART_handle, Ecode_t transferStatus, uint8_t *data, int transferCount);
+
+int getMemoryDeviceID(void);
+
+int getWGMHello(void);
+
 
 #endif /* INC_SPI_H_ */

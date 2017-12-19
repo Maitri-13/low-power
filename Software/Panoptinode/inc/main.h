@@ -35,7 +35,7 @@ typedef enum
 int main(void);
 
 /* delay for a certain length of time */
-void delay(int number_of_msec);
+void delay(int number_of_sec);
 
 
 

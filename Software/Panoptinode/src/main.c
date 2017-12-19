@@ -25,10 +25,10 @@
 /**************************************************************************//**
  * @brief  delay for some part of time
  *****************************************************************************/
-void delay(int number_of_msec)
+void delay(int number_of_sec)
 {
     // Converting time into milli_seconds
-    int milli_seconds = 1 * number_of_msec;
+    int milli_seconds = 1000 * number_of_sec;
     int intermediate = 0;
 
     // Stroing start time
@@ -51,6 +51,7 @@ void delay(int number_of_msec)
 int main(void)
 {
 	uint32_t img_size;
+	uint8_t device_id;
 
 	/* Chip errata */
 	CHIP_Init();
@@ -63,14 +64,13 @@ int main(void)
 	/* Initialize all peripherals */
 	initPeripherals();
 
-	/* set LED when ADC noise exceeds threshold */
 	while (1)
 	{
+
 		ACMP_IntEnable(ACMP0, ACMP_IEN_EDGE);
 		EMU_EnterEM2(true);
-		for(int test=0;test<8701;test++);
-		drv_syncCam();
-		all_in_one();
+		//getMemoryDeviceID();
+		getWGMHello();
 		led_clear();
 	}
 }

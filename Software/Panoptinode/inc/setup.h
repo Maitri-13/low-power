@@ -36,7 +36,6 @@
 UARTDRV_HandleData_t UART_handleData;
 UARTDRV_Handle_t UART_handle;
 
-
 SPIDRV_HandleData_t SPI_handleData;
 SPIDRV_Handle_t SPI_handle;
 
