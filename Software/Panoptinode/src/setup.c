@@ -10,8 +10,8 @@
 #include "em_lesense.h"
 #include "em_usart.h"
 #include "em_acmp.h"
+#include "em_timer.h"
 #include "hal-config.h"
-#include "em_pcnt.h"
 
 #include "spidrv.h"
 #include "uartdrv.h"
@@ -29,7 +29,7 @@ void ACMP0_IRQHandler(void)
 {
 	ACMP_IntClear(ACMP0,ACMP_IFC_EDGE);
 	ACMP_IntDisable(ACMP0, ACMP_IEN_EDGE);
-	led_toggle();
+	led_set();
 }
 
 
@@ -51,57 +51,68 @@ int	initPeripherals(void)
 	/* Setup SPI */
 	//setupSPI();
 
+	setupTimer();
+
 	/* Setup ACMP */
 	setupACMP();
-
-	//pcntInit();
 
 	return 0;
 }
 
-/* Frequency of RTCC (CCV1) pulses on PRS channel 4
-   = frequency of LCD polarity inversion. */
-#define RTCC_PULSE_FREQUENCY    (64)
 
-/***************************************************************************//**
- * @brief   Set up PCNT to generate an interrupt every second.
- ******************************************************************************/
-void pcntInit(void)
+/* 13671 Hz -> 14Mhz (clock frequency) / 1024 (prescaler)
+  Setting TOP to 27342 results in an overflow each 2 seconds */
+#define TOP 27342
+int led_count = 0;
+/**************************************************************************//**
+ * @brief TIMER0_IRQHandler
+ * Interrupt Service Routine TIMER0 Interrupt Line
+ *****************************************************************************/
+void TIMER0_IRQHandler(void)
 {
-  PCNT_Init_TypeDef pcntInit = PCNT_INIT_DEFAULT;
+  /* Clear flag for TIMER0 overflow interrupt */
+  TIMER_IntClear(TIMER0, TIMER_IF_OF);
 
-  /* Enable PCNT clock */
-  CMU_ClockEnable(cmuClock_PCNT0, true);
-  /* Set up the PCNT to count RTCC_PULSE_FREQUENCY pulses -> one second */
-  pcntInit.mode = pcntModeOvsSingle;
-  pcntInit.top = RTCC_PULSE_FREQUENCY;
-  pcntInit.s1CntDir = false;
-  /* The PRS channel*/
-  pcntInit.s0PRS = pcntPRSCh0;
-
-  PCNT_Init(PCNT0, &pcntInit);
-
-  /* Select PRS as the input for the PCNT */
-  PCNT_PRSInputEnable(PCNT0, pcntPRSInputS0, true);
-
-  /* Enable PCNT interrupt every second */
-  NVIC_EnableIRQ(PCNT0_IRQn);
-  PCNT_IntEnable(PCNT0, PCNT_IF_OF);
+  /* Toggle LED ON/OFF */
+  led_count++;
+  if(led_count==10)	led_count = 0;
 }
 
-/* PCNT interrupt counter */
-static volatile bool is_one_second = false;
-
-/***************************************************************************//**
- * @brief   This interrupt is triggered at every second by the PCNT
- ******************************************************************************/
-void PCNT0_IRQHandler(void)
+int setupTimer(void)
 {
-  PCNT_IntClear(PCNT0, PCNT_IF_OF);
-  is_one_second = true;
+	/* Enable clock for TIMER0 module */
+	CMU_ClockEnable(cmuClock_TIMER0, true);
+
+	/* Select TIMER0 parameters */
+	  TIMER_Init_TypeDef timerInit =
+	  {
+		.enable     = true,
+		.debugRun   = true,
+		.prescale   = timerPrescale1024,
+		.clkSel     = timerClkSelHFPerClk,
+		.fallAction = timerInputActionNone,
+		.riseAction = timerInputActionNone,
+		.mode       = timerModeUp,
+		.dmaClrAct  = false,
+		.quadModeX4 = false,
+		.oneShot    = false,
+		.sync       = false,
+	  };
+
+	  /* Enable overflow interrupt */
+	  TIMER_IntEnable(TIMER0, TIMER_IF_OF);
+
+	  /* Enable TIMER0 interrupt vector in NVIC */
+	  NVIC_EnableIRQ(TIMER0_IRQn);
+
+	  /* Set TIMER Top value */
+	  TIMER_TopSet(TIMER0, TOP);
+
+	  /* Configure TIMER */
+	  TIMER_Init(TIMER0, &timerInit);
+
+	  return 0;
 }
-
-
 /**************************************************************************//**
  * @brief  Sets up the ADC
  *****************************************************************************/

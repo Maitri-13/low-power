@@ -10,7 +10,7 @@
 #include "hal-config.h"
 #include "../inc/main.h"
 
-
+extern int led_count;
 /* set the led */
 void led_set(void)
 {
@@ -26,12 +26,12 @@ void led_clear(void)
 /* toggle the led */
 void led_toggle(void)
 {
-	if ((GPIO_PinOutGet(LED_PORT, LED_PIN)) == 0)
+	if (led_count%2)
 	{
-		GPIO_PinOutSet(LED_PORT, LED_PIN);
+		led_set();
 	}
 	else
 	{
-		GPIO_PinOutClear(LED_PORT, LED_PIN);
+		led_clear();
 	}
 }

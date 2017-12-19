@@ -37,6 +37,8 @@ uint8_t cmd_buffer[UART_CMD_LEN];
 uint8_t data_buffer[MAX_IMAGE_SIZE];
 volatile uint8_t recv_bytes = 0;
 
+extern int led_count;
+
 void USART0_RX_IRQHandler(void)
 {
 	;
@@ -110,18 +112,12 @@ uint8_t *all_in_one(void)
 
 	}
 
-	for(uint16_t j=0; j < 65535; j++)
-	{
-		for(uint8_t k; k<30;k++);
-	}
-
+	/*Delay*/
+	//while(led_count%2);
 	UARTDRV_TransmitB(UART_handle, GET_MSG, UART_CMD_LEN);
+	/*Delay*/
+	//while(led_count%2);
 	UARTDRV_ReceiveB(UART_handle, dbl_buffer, UART_DBL_LEN);
-
-	for(uint16_t j=0; j < 65535; j++)
-	{
-		for(uint8_t k; k<30;k++);
-	}
 
 	image_size |= (dbl_buffer[11] << 16);
 	image_size |= (dbl_buffer[10] << 8);
@@ -129,13 +125,10 @@ uint8_t *all_in_one(void)
 
 	num_packages = image_size/DATA_SIZE;
 
-	for(ack_id = 0; ack_id< num_packages; ack_id++){
-
+	for(ack_id = 0; ack_id< num_packages; ack_id++)
+	{
 
 		/* Set ACK msg*/
-		/*
-		PIC_ACK_MSG[4]=*((uint8_t*)&(ack_id)+1);
-		PIC_ACK_MSG[5]=*((uint8_t*)&(ack_id)+0);*/
 		PIC_ACK_MSG[4] = ack_id;
 
 		/* get_pic */

@@ -56,9 +56,9 @@ int main(void)
 	CHIP_Init();
 
 	/* init HFPER clock */
-	CMU_ClockEnable(cmuClock_HFPER, true);
+	CMU_ClockEnable(cmuClock_HFPER,true);
 
-	led_clear();
+	//led_clear();
 
 	/* Initialize all peripherals */
 	initPeripherals();
@@ -67,11 +67,9 @@ int main(void)
 	while (1)
 	{
 		ACMP_IntEnable(ACMP0, ACMP_IEN_EDGE);
-		//EMU_EnterEM2(true);
-		for(int test=0;test<8701;test++);
 		drv_syncCam();
+		led_toggle();
 		all_in_one();
-		led_clear();
 	}
 }
 

@@ -68,7 +68,7 @@ int setupLED(void);
 /* IRQHandler for ACMP */
 void ACMP0_IRQHandler(void);
 
-void pcntInit(void);
+int setupTimer(void);
 
 
 
