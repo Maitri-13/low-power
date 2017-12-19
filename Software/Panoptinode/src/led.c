@@ -10,7 +10,8 @@
 #include "hal-config.h"
 #include "../inc/main.h"
 
-extern int led_count;
+extern volatile int led_count;
+
 /* set the led */
 void led_set(void)
 {

@@ -21,6 +21,11 @@
 DEFINE_BUF_QUEUE(EMDRV_UARTDRV_MAX_CONCURRENT_RX_BUFS, rxBufferQueue);
 DEFINE_BUF_QUEUE(EMDRV_UARTDRV_MAX_CONCURRENT_TX_BUFS, txBufferQueue);
 
+/* 13671 Hz -> 14Mhz (clock frequency) / 1024 (prescaler)
+  Setting TOP to 27342 results in an overflow each 2 seconds */
+#define TOP 27342
+volatile int led_count = 0;
+volatile bool uart_flag = true;
 
 /**************************************************************************//**
  * @brief handle ACMP wakeups
@@ -31,8 +36,6 @@ void ACMP0_IRQHandler(void)
 	ACMP_IntDisable(ACMP0, ACMP_IEN_EDGE);
 	led_set();
 }
-
-
 
 /**************************************************************************//**
  * @brief  INIT Peripherals one-by-one
@@ -59,12 +62,6 @@ int	initPeripherals(void)
 	return 0;
 }
 
-
-/* 13671 Hz -> 14Mhz (clock frequency) / 1024 (prescaler)
-  Setting TOP to 27342 results in an overflow each 2 seconds */
-#define TOP 27342
-int led_count = 0;
-bool uart_flag = true;
 /**************************************************************************//**
  * @brief TIMER0_IRQHandler
  * Interrupt Service Routine TIMER0 Interrupt Line
@@ -81,6 +78,9 @@ void TIMER0_IRQHandler(void)
   uart_flag = false;
 }
 
+/**************************************************************************//**
+ * @brief  Sets up the Timer
+ *****************************************************************************/
 int setupTimer(void)
 {
 	/* Enable clock for TIMER0 module */
@@ -116,6 +116,7 @@ int setupTimer(void)
 
 	  return 0;
 }
+
 /**************************************************************************//**
  * @brief  Sets up the ADC
  *****************************************************************************/
@@ -161,7 +162,6 @@ int setupUART2(void)
 
 	return 0;
 }
-
 
 /**************************************************************************//**
  * @brief  Sets up the UART

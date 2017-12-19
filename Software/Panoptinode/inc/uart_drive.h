@@ -26,18 +26,17 @@
 extern UARTDRV_HandleData_t UART_handleData;
 extern UARTDRV_Handle_t UART_handle;
 
+/* Structure to store image data */
+typedef struct _ImageData
+{
+	uint8_t data_buffer[MAX_IMAGE_SIZE];
+	uint32_t image_size;
+}ImageData_t;
+
 void recvCbk(UARTDRV_Handle_t, Ecode_t transferStatus, uint8_t *data, UARTDRV_Count_t transferCount);
-
 void xmitCbk(UARTDRV_Handle_t, Ecode_t transferStatus, uint8_t *data, UARTDRV_Count_t transferCount);
-
 int drv_syncCam(void);
-
 void drv_resetCam(void);
-
-uint32_t drv_UART_SM(void);
-
-uint8_t *getImage(uint32_t image_size);
-
-uint8_t *all_in_one(void);
+void get_Picture(void);
 
 #endif /* INC_UART_DRIVE_H_ */

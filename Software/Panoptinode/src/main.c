@@ -21,29 +21,6 @@
 
 #include "../inc/main.h"
 
-
-/**************************************************************************//**
- * @brief  delay for some part of time
- *****************************************************************************/
-void delay(int number_of_msec)
-{
-    // Converting time into milli_seconds
-    int milli_seconds = 1 * number_of_msec;
-    int intermediate = 0;
-
-    // Stroing start time
-    clock_t start_time = clock();
-
-    // looping till required time is not acheived
-    while (intermediate < start_time + milli_seconds)
-    {
-    	intermediate = clock();
-    }
-
-}
-
-
-
 /**************************************************************************//**
  * @brief  init all periphs, go to sleep, then wake up and do main
  *****************************************************************************/
@@ -64,8 +41,7 @@ int main(void)
 	while (1)
 	{
 		ACMP_IntEnable(ACMP0, ACMP_IEN_EDGE);
-		drv_syncCam();
-		all_in_one();
+		get_Picture();
 	}
 }
 
