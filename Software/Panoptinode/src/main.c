@@ -44,11 +44,10 @@ int main(void)
 	/* Run your functions */
 	while (1)
 	{
-
 		ACMP_IntEnable(ACMP0, ACMP_IEN_EDGE);
-		EMU_EnterEM2(true);
-		//getMemoryDeviceID();
-		get_Picture();
+		EMU_EnterEM3(true);
+		getMemoryDeviceID();
+		getWGMHello();
 		led_clear();
 	}
 }

@@ -35,6 +35,7 @@ void ACMP0_IRQHandler(void)
 	ACMP_IntClear(ACMP0,ACMP_IFC_EDGE);
 	ACMP_IntClear(ACMP0,ACMP_IFC_WARMUP);
 	ACMP_IntDisable(ACMP0, ACMP_IEN_EDGE);
+	ACMP_IntDisable(ACMP0, ACMP_IEN_WARMUP);
 	led_set();
 }
 
@@ -211,7 +212,7 @@ int setupUART(void)
 /**************************************************************************//**
  * @brief  Sets up the SPI using SPIDRV
  *****************************************************************************/
-/*
+
 int setupSPI2(void)
 {
 
@@ -228,6 +229,8 @@ int setupSPI2(void)
 	initSPI.portLocationRx  = SPI_MISO_LOC;
 	initSPI.clockMode		= spidrvClockMode0;
 	initSPI.csControl       = spidrvCsControlApplication;
+	//initSPI.bitOrder		= spidrvBitOrderMsbFirst;
+
 	SPIDRV_Init(SPI_handle,&initSPI);
 
 	//* Enable RX interrupts /
@@ -243,7 +246,6 @@ int setupSPI2(void)
     return 0;
 }
 
-*/
 /**************************************************************************//**
  * @brief  Sets up the SPI using USART
  *****************************************************************************/
