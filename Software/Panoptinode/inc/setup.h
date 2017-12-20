@@ -61,7 +61,9 @@ int setupSPI(void);
 /* Setup SPI */
 int setupSPI2(void);
 
-/* Setup GPIO */
+int setupGPIO(void);
+
+/* Setup LED */
 int setupLED(void);
 
 /* IRQHandler for ACMP */

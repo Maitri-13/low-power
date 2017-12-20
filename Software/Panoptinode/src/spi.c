@@ -82,41 +82,62 @@ int getMemoryDeviceID(void)
 
 int getWGMHello(void)
 {
+	wait_to_recv = true;
+
 	GPIO_PinOutClear(SPI_CS_PORT, SPI_CS_PIN);
 	SPIDRV_MTransmitB(SPI_handle, WGM_BASIC, 4);
+	//while(wait_to_recv == true);
 	SPIDRV_MReceiveB(SPI_handle, input_buffer, 4);
 	GPIO_PinOutSet(SPI_CS_PORT, SPI_CS_PIN);
+	wait_to_recv = true;
 
 
 	GPIO_PinOutClear(SPI_CS_PORT, SPI_CS_PIN);
 	SPIDRV_MTransmitB(SPI_handle, WGM_INIT, 4);
+	//while(wait_to_recv == true);
 	SPIDRV_MReceiveB(SPI_handle, input_buffer, 4);
 	GPIO_PinOutSet(SPI_CS_PORT, SPI_CS_PIN);
+	wait_to_recv = true;
+
 
 	GPIO_PinOutClear(SPI_CS_PORT, SPI_CS_PIN);
 	SPIDRV_MTransmitB(SPI_handle, WGM_STA_MODE, 5);
+	//while(wait_to_recv == true);
 	SPIDRV_MReceiveB(SPI_handle, input_buffer, 5);
 	GPIO_PinOutSet(SPI_CS_PORT, SPI_CS_PIN);
+	wait_to_recv = true;
+
 
 	GPIO_PinOutClear(SPI_CS_PORT, SPI_CS_PIN);
 	SPIDRV_MTransmitB(SPI_handle, WGM_SET_PASSWD, 13);
+	//while(wait_to_recv == true);
 	SPIDRV_MReceiveB(SPI_handle, input_buffer, 13);
 	GPIO_PinOutSet(SPI_CS_PORT, SPI_CS_PIN);
+	wait_to_recv = true;
+
 
 	GPIO_PinOutClear(SPI_CS_PORT, SPI_CS_PIN);
 	SPIDRV_MTransmitB(SPI_handle, WGM_CONN_SSID, 11);
+	//while(wait_to_recv == true);
 	SPIDRV_MReceiveB(SPI_handle, input_buffer, 11);
 	GPIO_PinOutSet(SPI_CS_PORT, SPI_CS_PIN);
+	wait_to_recv = true;
+
 
 	GPIO_PinOutClear(SPI_CS_PORT, SPI_CS_PIN);
 	SPIDRV_MTransmitB(SPI_handle, WGM_CONN_TCP, 11);
+	//while(wait_to_recv == true);
 	SPIDRV_MReceiveB(SPI_handle, input_buffer, 11);
 	GPIO_PinOutSet(SPI_CS_PORT, SPI_CS_PIN);
+	wait_to_recv = true;
+
 
 	GPIO_PinOutClear(SPI_CS_PORT, SPI_CS_PIN);
 	SPIDRV_MTransmitB(SPI_handle, CRAP_PACKET, 8);
+	//while(wait_to_recv == true);
 	SPIDRV_MReceiveB(SPI_handle, input_buffer, 8);
 	GPIO_PinOutSet(SPI_CS_PORT, SPI_CS_PIN);
+	wait_to_recv = true;
 
 	return 0;
 }

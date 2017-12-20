@@ -27,6 +27,7 @@ DEFINE_BUF_QUEUE(EMDRV_UARTDRV_MAX_CONCURRENT_TX_BUFS, txBufferQueue);
 volatile int led_count = 0;
 volatile bool uart_flag = true;
 
+
 /**************************************************************************//**
  * @brief handle ACMP wakeups
  *****************************************************************************/
@@ -60,6 +61,9 @@ int	initPeripherals(void)
 
 	/* Setup ACMP */
 	setupACMP();
+
+	/* Setup GPIO*/
+	setupGPIO();
 
 	return 0;
 }
@@ -229,7 +233,7 @@ int setupSPI2(void)
 	initSPI.portLocationRx  = SPI_MISO_LOC;
 	initSPI.clockMode		= spidrvClockMode0;
 	initSPI.csControl       = spidrvCsControlApplication;
-	//initSPI.bitOrder		= spidrvBitOrderMsbFirst;
+	initSPI.bitOrder		= spidrvBitOrderMsbFirst;
 
 	SPIDRV_Init(SPI_handle,&initSPI);
 
@@ -243,6 +247,12 @@ int setupSPI2(void)
 	GPIO_PinModeSet(MEM_WP_PORT, MEM_WP_PIN, gpioModePushPull, 1);
 	GPIO_PinModeSet(MEM_CS_PORT, MEM_CS_PIN, gpioModePushPull, 1);
 	GPIO_PinModeSet(SPI_CS_PORT, SPI_CS_PIN, gpioModePushPull, 1);
+
+	/* setup SPI READY interrupt*/
+	GPIO_PinModeSet(gpioPortA, 4, gpioModeInputPull, 1);
+
+
+
     return 0;
 }
 
@@ -329,4 +339,18 @@ int setupACMP(void)
 	/* enable and we're done here*/
 	ACMP_Enable(ACMP0);
 	return 0;
+}
+
+int setupGPIO(void)
+{
+
+	GPIO_PinModeSet(gpioPortA, 4, gpioModeInputPullFilter, 0);
+
+	/* Set falling edge interrupt for A4 */
+	GPIO_IntConfig(gpioPortA, 4, true, true, true);
+
+	/* Enable interrupt in core for even and odd gpio interrupts */
+	NVIC_ClearPendingIRQ(GPIO_EVEN_IRQn);
+	NVIC_EnableIRQ(GPIO_EVEN_IRQn);
+
 }

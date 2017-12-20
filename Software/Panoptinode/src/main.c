@@ -46,7 +46,7 @@ int main(void)
 	{
 		ACMP_IntEnable(ACMP0, ACMP_IEN_EDGE);
 		EMU_EnterEM3(true);
-		getMemoryDeviceID();
+		//getMemoryDeviceID();
 		getWGMHello();
 		led_clear();
 	}
